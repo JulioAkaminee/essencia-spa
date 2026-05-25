@@ -162,6 +162,11 @@
       height: 2px;
       background: linear-gradient(90deg, transparent, #EC4899, #8B5CF6, transparent);
     }
+
+    /* Hide blobs on mobile to prevent overflow-x */
+    @media (max-width: 767px) {
+      .blob { display: none !important; }
+    }
   </style></head>
 <body class="soft-gradient text-gray-700 antialiased">
 
