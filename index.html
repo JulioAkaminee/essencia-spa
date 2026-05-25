@@ -161,19 +161,7 @@
       height: 2px;
       background: linear-gradient(90deg, transparent, #EC4899, #8B5CF6, transparent);
     }
-  </style>
-
-    <!-- AOS Visibility Fix -->
-    <style>
-        /* Garante que elementos AOS no viewport inicial fiquem visíveis */
-        [data-aos]:not(.aos-animate) {
-            opacity: 1 !important;
-            transform: none !important;
-            transition: none !important;
-        }
-    </style>
-
-</head>
+  </style></head>
 <body class="soft-gradient text-gray-700 antialiased overflow-x-hidden">
 
   <!-- Decorative Blobs -->
@@ -870,5 +858,13 @@
       e.preventDefault();
       alert('Obrigada pelo interesse! Em um site real, esta mensagem seria enviada para nossa equipe de agendamento.');
     });
-  </script></body>
+  </script><!-- AOS Fix -->
+<style>
+[data-aos]:not(.aos-animate) {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
+</style>
+</body>
 </html>
