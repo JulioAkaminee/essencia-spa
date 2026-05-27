@@ -3,667 +3,898 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Essência Spa — Bem-Estar e Estética em Bragança Paulista</title>
-    <meta name="description" content="Spa de luxo em Bragança Paulista. Massagens relaxantes, tratamentos faciais, aromaterapia e momentos de puro bem-estar.">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Essência Spa — Bem-Estar e Estética de Luxo em Bragança Paulista</title>
+    <meta name="description" content="Spa de luxo em Bragança Paulista. Massagens relaxantes, tratamentos faciais, drenagem, aromaterapia e rituais de bem-estar em um refúgio de tranquilidade.">
+    <meta name="theme-color" content="#FBF7F4">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Essência Spa — Bem-Estar e Estética de Luxo">
+    <meta property="og:description" content="Rituais de relaxamento e beleza em um refúgio de tranquilidade no coração de Bragança Paulista.">
+    <meta property="og:image" content="https://images.pexels.com/photos/3865676/pexels-photo-3865676.jpeg?auto=compress&cs=tinysrgb&w=1200">
+
+    <!-- Performance: preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://images.pexels.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+
+    <!-- Fonts: 2 families — Cormorant Garamond (display serif) + Jost (sans) -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        rose: {
-                            50: '#FDF2F8',
-                            100: '#FCE7F3',
-                            200: '#FBCFE8',
-                            300: '#F9A8D4',
-                            400: '#F472B6',
-                            500: '#EC4899',
-                            600: '#DB2777',
-                            700: '#BE185D',
-                            800: '#9D174D',
-                            900: '#831843',
-                        },
-                        lavender: {
-                            400: '#A78BFA',
-                            500: '#8B5CF6',
-                            600: '#7C3AED',
-                        }
+                        /* Warm neutral base — refined "linen / sand" */
+                        cream:   '#FBF7F4',
+                        sand:    '#F3EBE3',
+                        stone:   { 400:'#9C8F86', 500:'#7C6F66', 600:'#5E534B', 700:'#473E38', 800:'#322B27' },
+                        /* Brand: refined rose */
+                        blush:   { 50:'#FDF4F1', 100:'#FAE7E0', 200:'#F3CDBF', 300:'#E9AB97', 400:'#DD8870', 500:'#CC6A52', 600:'#B0503C', 700:'#8E3F30', 800:'#6E3226' },
+                        /* Secondary: muted lavender */
+                        lilac:   { 200:'#E4DEF0', 300:'#CBC0E2', 400:'#A99BCB', 500:'#8B7AB0', 600:'#6F5F94' },
+                        /* Accent: warm gold */
+                        gold:    { 300:'#E2C99A', 400:'#D2B27A', 500:'#BE9A5E' },
                     },
                     fontFamily: {
-                        heading: ['Lora', 'serif'],
-                        body: ['Raleway', 'sans-serif'],
-                    }
+                        display: ['"Cormorant Garamond"', 'serif'],
+                        body:    ['Jost', 'sans-serif'],
+                    },
+                    letterSpacing: { tightish: '-0.01em' },
                 }
             }
         }
     </script>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+
     <style type="text/tailwindcss">
         @layer base {
-            body { font-family: 'Raleway', sans-serif; }
-            h1, h2, h3, h4, h5, h6 { font-family: 'Lora', serif; }
+            html { scroll-behavior: smooth; }
+            body { font-family: 'Jost', sans-serif; }
+            h1,h2,h3,h4,h5,h6 { font-family: 'Cormorant Garamond', serif; }
+
+            /* Fluid typographic scale */
+            .fluid-display { font-size: clamp(2.75rem, 7vw + 0.5rem, 6.5rem); line-height: 0.98; }
+            .fluid-h2      { font-size: clamp(2rem, 3.5vw + 0.5rem, 3.5rem); line-height: 1.05; }
+            .fluid-lead    { font-size: clamp(1.05rem, 0.6vw + 0.9rem, 1.35rem); }
+
+            /* Visible, on-brand focus states */
+            :focus-visible {
+                outline: 2px solid #B0503C;
+                outline-offset: 3px;
+                border-radius: 4px;
+            }
+            ::selection { background: #E9AB97; color: #322B27; }
         }
+
         @layer components {
-            .hero-pattern {
-                background-image: linear-gradient(135deg, rgba(236,72,153,0.2) 0%, rgba(139,92,246,0.15) 100%),
-                                  url('https://images.pexels.com/photos/305941/pexels-photo-305941.jpeg?auto=compress&cs=tinysrgb&w=1920');
-                background-size: cover;
-                background-position: center;
+            /* ---------- Glassmorphism ---------- */
+            .glass {
+                background: rgba(251, 247, 244, 0.65);
+                backdrop-filter: blur(16px) saturate(140%);
+                -webkit-backdrop-filter: blur(16px) saturate(140%);
+                border: 1px solid rgba(255, 255, 255, 0.5);
             }
-            .float-animation {
-                animation: float 6s ease-in-out infinite;
+            .glass-dark {
+                background: rgba(50, 43, 39, 0.35);
+                backdrop-filter: blur(14px);
+                -webkit-backdrop-filter: blur(14px);
+                border: 1px solid rgba(255, 255, 255, 0.18);
             }
-            @keyframes float {
-                0%, 100% { transform: translateY(0px); }
-                50% { transform: translateY(-15px); }
+
+            /* ---------- Layered, soft shadows ---------- */
+            .shadow-soft {
+                box-shadow: 0 1px 2px rgba(71,62,56,0.04),
+                            0 8px 24px -8px rgba(110,50,38,0.10),
+                            0 24px 48px -24px rgba(110,50,38,0.10);
             }
-            @keyframes fadeInUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(30px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
+            .shadow-lift {
+                box-shadow: 0 2px 6px rgba(71,62,56,0.06),
+                            0 18px 40px -12px rgba(110,50,38,0.20),
+                            0 40px 80px -40px rgba(139,122,176,0.18);
             }
-            @keyframes fadeIn {
-                from { opacity: 0; }
-                to { opacity: 1; }
-            }
-            @keyframes scaleIn {
-                from {
-                    opacity: 0;
-                    transform: scale(0.9);
-                }
-                to {
-                    opacity: 1;
-                    transform: scale(1);
-                }
-            }
-            @keyframes shimmer {
-                0% { background-position: -200% 0; }
-                100% { background-position: 200% 0; }
-            }
-            @keyframes pulse-soft {
-                0%, 100% { box-shadow: 0 0 0 0 rgba(236,72,153,0.4); }
-                50% { box-shadow: 0 0 0 15px rgba(236,72,153,0); }
-            }
-            @keyframes slideInLeft {
-                from { opacity: 0; transform: translateX(-30px); }
-                to { opacity: 1; transform: translateX(0); }
-            }
-            @keyframes slideInRight {
-                from { opacity: 0; transform: translateX(30px); }
-                to { opacity: 1; transform: translateX(0); }
-            }
-            .animate-fade-in-up {
-                animation: fadeInUp 0.8s ease-out forwards;
-                opacity: 0;
-            }
-            .animate-fade-in {
-                animation: fadeIn 1s ease-out forwards;
-                opacity: 0;
-            }
-            .animate-scale-in {
-                animation: scaleIn 0.6s ease-out forwards;
-                opacity: 0;
-            }
-            .animate-slide-left {
-                animation: slideInLeft 0.8s ease-out forwards;
-                opacity: 0;
-            }
-            .animate-slide-right {
-                animation: slideInRight 0.8s ease-out forwards;
-                opacity: 0;
-            }
-            .delay-100 { animation-delay: 0.1s; }
-            .delay-200 { animation-delay: 0.2s; }
-            .delay-300 { animation-delay: 0.3s; }
-            .delay-400 { animation-delay: 0.4s; }
-            .delay-500 { animation-delay: 0.5s; }
-            .delay-600 { animation-delay: 0.6s; }
-            .delay-700 { animation-delay: 0.7s; }
-            .delay-800 { animation-delay: 0.8s; }
-            .card-hover {
-                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-            .card-hover:hover {
-                transform: translateY(-8px) scale(1.02);
-                box-shadow: 0 25px 50px -12px rgba(236, 72, 153, 0.15);
-            }
-            .btn-pulse {
-                animation: pulse-soft 2s infinite;
-            }
+
+            /* ---------- Text gradient ---------- */
             .text-gradient {
-                background: linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%);
+                background: linear-gradient(105deg, #B0503C 0%, #CC6A52 40%, #8B7AB0 100%);
                 -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
                 background-clip: text;
+                -webkit-text-fill-color: transparent;
             }
-            .glass-card {
-                background: rgba(255, 255, 255, 0.7);
-                backdrop-filter: blur(12px);
-                border: 1px solid rgba(255, 255, 255, 0.3);
+
+            /* ---------- Primary button ---------- */
+            .btn-primary {
+                position: relative;
+                isolation: isolate;
+                overflow: hidden;
+                background: linear-gradient(105deg, #CC6A52 0%, #B0503C 60%, #8B7AB0 140%);
+                color: #fff;
             }
-            .soft-shadow {
-                box-shadow: 0 4px 20px rgba(236, 72, 153, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05);
+            .btn-primary::after {
+                content: '';
+                position: absolute; inset: 0; z-index: -1;
+                background: linear-gradient(105deg, #8B7AB0 0%, #B0503C 60%);
+                opacity: 0;
+                transition: opacity .5s ease;
             }
+            .btn-primary:hover::after { opacity: 1; }
+            .btn-primary:hover { box-shadow: 0 12px 30px -8px rgba(176,80,60,0.5); }
+
+            /* Shimmer sweep on buttons */
+            .sheen { position: relative; overflow: hidden; }
+            .sheen::before {
+                content: '';
+                position: absolute; top: 0; left: -120%;
+                width: 60%; height: 100%;
+                background: linear-gradient(100deg, transparent, rgba(255,255,255,0.45), transparent);
+                transform: skewX(-18deg);
+                transition: left .8s ease;
+            }
+            .sheen:hover::before { left: 140%; }
+
+            /* ---------- Animated hamburger ---------- */
+            .burger span {
+                display: block; height: 2px; width: 26px;
+                background: currentColor; border-radius: 2px;
+                transition: transform .35s cubic-bezier(.65,0,.35,1), opacity .25s ease;
+            }
+            .burger span + span { margin-top: 6px; }
+            .burger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .burger.open span:nth-child(2) { opacity: 0; }
+            .burger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+            /* ---------- Card hover ---------- */
+            .card-hover { transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s ease; }
+            .card-hover:hover { transform: translateY(-10px); }
+
+            .img-zoom img { transition: transform 1s cubic-bezier(.2,.7,.2,1); }
+            .img-zoom:hover img { transform: scale(1.08); }
+
+            /* ---------- Decorative thin divider ---------- */
+            .eyebrow {
+                display: inline-flex; align-items: center; gap: .6rem;
+                font-family: 'Jost', sans-serif;
+                font-weight: 500; font-size: .72rem; letter-spacing: .28em;
+                text-transform: uppercase;
+            }
+            .eyebrow::before {
+                content: ''; width: 2.25rem; height: 1px;
+                background: currentColor; opacity: .55;
+            }
+            .eyebrow.center::after {
+                content: ''; width: 2.25rem; height: 1px;
+                background: currentColor; opacity: .55;
+            }
+        }
+
+        @layer utilities {
+            /* ---------- Scroll reveal ---------- */
+            .reveal {
+                opacity: 0;
+                transform: translateY(34px);
+                transition: opacity .9s cubic-bezier(.2,.7,.2,1),
+                            transform .9s cubic-bezier(.2,.7,.2,1);
+                will-change: opacity, transform;
+            }
+            .reveal.from-left  { transform: translateX(-44px); }
+            .reveal.from-right { transform: translateX(44px); }
+            .reveal.zoom       { transform: scale(.94); }
+            .reveal.is-visible { opacity: 1; transform: none; }
+
+            /* ---------- Ambient float ---------- */
+            @keyframes floaty { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-22px)} }
+            .floaty   { animation: floaty 8s ease-in-out infinite; }
+            .floaty-2 { animation: floaty 11s ease-in-out infinite; }
+
+            @keyframes drift { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(20px,-18px) scale(1.06)} }
+            .drift { animation: drift 16s ease-in-out infinite; }
+
+            @keyframes hint { 0%,100%{transform:translateY(0);opacity:.5} 50%{transform:translateY(8px);opacity:1} }
+            .hint { animation: hint 2s ease-in-out infinite; }
+
+            /* ---------- Custom cursor ---------- */
+            .cursor-dot, .cursor-ring {
+                position: fixed; top: 0; left: 0; z-index: 9999;
+                pointer-events: none; border-radius: 9999px;
+                transform: translate(-50%, -50%);
+                mix-blend-mode: multiply;
+            }
+            .cursor-dot  { width: 7px; height: 7px; background: #B0503C; transition: opacity .3s; }
+            .cursor-ring {
+                width: 38px; height: 38px;
+                border: 1.5px solid rgba(176,80,60,.5);
+                transition: width .3s ease, height .3s ease, border-color .3s ease, opacity .3s ease, background .3s ease;
+            }
+            .cursor-ring.grow {
+                width: 64px; height: 64px;
+                background: rgba(176,80,60,.08);
+                border-color: rgba(139,122,176,.6);
+            }
+            @media (hover: none), (pointer: coarse) {
+                .cursor-dot, .cursor-ring { display: none !important; }
+            }
+        }
+
+        /* ---------- Reduced motion ---------- */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: .001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .001ms !important;
+            }
+            .reveal { opacity: 1 !important; transform: none !important; }
+            .cursor-dot, .cursor-ring { display: none !important; }
         }
     </style>
 </head>
-<body class="bg-rose-50 text-rose-900 antialiased overflow-x-hidden">
+<body class="bg-cream text-stone-700 antialiased overflow-x-hidden">
 
-    <!-- Navbar -->
-    <nav class="fixed w-full bg-white/80 backdrop-blur-xl shadow-sm z-50 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex items-center space-x-3 animate-slide-left">
-                    <div class="w-10 h-10 bg-gradient-to-br from-rose-400 to-lavender-500 rounded-full flex items-center justify-center">
-                        <i data-lucide="flower-2" class="w-5 h-5 text-white"></i>
+    <!-- Skip link -->
+    <a href="#conteudo" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10000] focus:px-5 focus:py-3 focus:rounded-full focus:bg-blush-600 focus:text-white focus:font-medium">Pular para o conteúdo</a>
+
+    <!-- Custom cursor -->
+    <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+    <!-- Scroll progress -->
+    <div class="fixed top-0 left-0 h-1 z-[60] bg-gradient-to-r from-blush-500 via-blush-400 to-lilac-500" id="progress" style="width:0%" aria-hidden="true"></div>
+
+    <!-- ===================== NAVBAR ===================== -->
+    <header>
+        <nav id="navbar" class="fixed inset-x-0 top-0 z-50 transition-all duration-500" aria-label="Navegação principal">
+            <div class="max-w-7xl mx-auto px-5 sm:px-8">
+                <div class="flex items-center justify-between h-20 transition-all duration-500" id="navInner">
+                    <a href="#inicio" class="flex items-center gap-3 group" aria-label="Essência Spa — início">
+                        <span class="w-11 h-11 rounded-full bg-gradient-to-br from-blush-400 to-lilac-500 grid place-items-center shadow-md shadow-blush-500/25 transition-transform duration-500 group-hover:rotate-[18deg]">
+                            <i data-lucide="flower-2" class="w-5 h-5 text-white"></i>
+                        </span>
+                        <span class="leading-none">
+                            <span class="block font-display text-2xl font-semibold text-stone-800">Essência</span>
+                            <span class="block text-[0.62rem] tracking-[0.34em] uppercase text-blush-500 font-medium">Spa & Bem-Estar</span>
+                        </span>
+                    </a>
+
+                    <div class="hidden md:flex items-center gap-9">
+                        <a href="#servicos" class="nav-link text-sm tracking-wide text-stone-600 hover:text-blush-600 transition-colors">Serviços</a>
+                        <a href="#espaco" class="nav-link text-sm tracking-wide text-stone-600 hover:text-blush-600 transition-colors">O Espaço</a>
+                        <a href="#rituais" class="nav-link text-sm tracking-wide text-stone-600 hover:text-blush-600 transition-colors">Rituais</a>
+                        <a href="#depoimentos" class="nav-link text-sm tracking-wide text-stone-600 hover:text-blush-600 transition-colors">Depoimentos</a>
+                        <a href="#contato" class="sheen btn-primary text-sm font-medium px-6 py-2.5 rounded-full shadow-lg shadow-blush-500/25 transition-all hover:scale-[1.03]">Agendar</a>
+                    </div>
+
+                    <button id="burgerBtn" class="burger md:hidden text-stone-700 p-2 -mr-2" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+                        <span></span><span></span><span></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="fixed inset-0 z-40 md:hidden invisible opacity-0 transition-all duration-500" aria-hidden="true">
+            <div class="absolute inset-0 bg-stone-800/40 backdrop-blur-sm" id="menuOverlay"></div>
+            <nav class="absolute right-0 top-0 h-full w-[78%] max-w-sm glass shadow-lift translate-x-full transition-transform duration-500 ease-[cubic-bezier(.65,0,.35,1)] flex flex-col" id="menuPanel" aria-label="Menu móvel">
+                <div class="px-7 pt-24 pb-8 flex flex-col gap-1">
+                    <a href="#servicos"    class="mobile-link py-4 border-b border-stone-400/15 font-display text-3xl text-stone-800">Serviços</a>
+                    <a href="#espaco"       class="mobile-link py-4 border-b border-stone-400/15 font-display text-3xl text-stone-800">O Espaço</a>
+                    <a href="#rituais"      class="mobile-link py-4 border-b border-stone-400/15 font-display text-3xl text-stone-800">Rituais</a>
+                    <a href="#depoimentos"  class="mobile-link py-4 border-b border-stone-400/15 font-display text-3xl text-stone-800">Depoimentos</a>
+                    <a href="#contato" class="mobile-link mt-6 btn-primary text-center font-medium px-6 py-4 rounded-full">Agendar Consulta</a>
+                </div>
+                <div class="mt-auto px-7 pb-10 text-sm text-stone-500 space-y-2">
+                    <a href="tel:+5511999999999" class="flex items-center gap-2 hover:text-blush-600 transition-colors"><i data-lucide="phone" class="w-4 h-4"></i> (11) 99999-9999</a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener" class="flex items-center gap-2 hover:text-blush-600 transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i> @essenciaspa</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="conteudo">
+
+    <!-- ===================== HERO ===================== -->
+    <section id="inicio" class="relative min-h-[100svh] flex items-center overflow-hidden">
+        <!-- Parallax background -->
+        <div class="absolute inset-0 -z-10" data-parallax="0.18">
+            <img src="https://images.pexels.com/photos/3865676/pexels-photo-3865676.jpeg?auto=compress&cs=tinysrgb&w=1920"
+                 alt="Ambiente sereno de spa com toalhas, velas e flores"
+                 class="w-full h-[118%] object-cover" fetchpriority="high">
+        </div>
+        <div class="absolute inset-0 -z-10 bg-gradient-to-b from-cream/70 via-cream/45 to-cream"></div>
+        <div class="absolute inset-0 -z-10 bg-gradient-to-r from-cream/80 via-transparent to-transparent"></div>
+
+        <!-- Ambient blobs -->
+        <div class="hidden md:block absolute top-28 right-24 w-44 h-44 rounded-full bg-blush-200/40 blur-3xl floaty"></div>
+        <div class="hidden md:block absolute bottom-28 left-1/4 w-56 h-56 rounded-full bg-lilac-300/30 blur-3xl floaty-2"></div>
+
+        <div class="relative max-w-7xl mx-auto px-5 sm:px-8 w-full pt-28 pb-20">
+            <div class="max-w-3xl">
+                <p class="eyebrow text-blush-600 reveal">Bem-estar em Bragança Paulista</p>
+                <h1 class="fluid-display font-display font-medium text-stone-800 mt-6 mb-7 reveal" data-delay="80">
+                    Onde o tempo<br><span class="italic text-gradient">desacelera</span>
+                </h1>
+                <p class="fluid-lead font-light text-stone-600 max-w-xl leading-relaxed reveal" data-delay="160">
+                    Rituais de relaxamento, beleza e cuidado pensados em cada detalhe — para você reencontrar o equilíbrio entre corpo, mente e essência.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 mt-10 reveal" data-delay="240">
+                    <a href="https://wa.me/5511999999999" target="_blank" rel="noopener"
+                       class="sheen btn-primary inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full font-medium text-lg shadow-xl shadow-blush-500/25 transition-transform hover:scale-[1.03]">
+                        <i data-lucide="calendar-heart" class="w-5 h-5"></i> Agendar Consulta
+                    </a>
+                    <a href="#servicos"
+                       class="glass inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full font-medium text-lg text-stone-700 hover:text-blush-600 transition-all hover:scale-[1.02]">
+                        <i data-lucide="sparkles" class="w-5 h-5"></i> Ver Tratamentos
+                    </a>
+                </div>
+
+                <!-- Social proof -->
+                <div class="mt-14 flex flex-wrap items-center gap-x-6 gap-y-4 reveal" data-delay="320">
+                    <div class="flex -space-x-3">
+                        <img src="https://images.pexels.com/photos/6627936/pexels-photo-6627936.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop&crop=face" alt="" loading="lazy" class="w-11 h-11 rounded-full border-2 border-cream object-cover">
+                        <img src="https://images.pexels.com/photos/6628216/pexels-photo-6628216.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop&crop=face" alt="" loading="lazy" class="w-11 h-11 rounded-full border-2 border-cream object-cover">
+                        <img src="https://images.pexels.com/photos/6628309/pexels-photo-6628309.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop&crop=face" alt="" loading="lazy" class="w-11 h-11 rounded-full border-2 border-cream object-cover">
                     </div>
                     <div>
-                        <span class="text-xl font-bold text-rose-900" style="font-family: 'Lora', serif;">Essência Spa</span>
-                        <span class="hidden sm:inline text-xs text-rose-500 ml-2 tracking-widest uppercase">Bem-Estar</span>
+                        <div class="flex items-center gap-0.5 text-gold-500" aria-hidden="true">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-sm text-stone-600 mt-1"><span class="font-semibold text-stone-800">+500 clientes</span> que voltaram a relaxar</p>
                     </div>
                 </div>
-                <div class="hidden md:flex items-center space-x-8 animate-fade-in delay-200">
-                    <a href="#inicio" class="text-rose-700 hover:text-rose-500 transition-colors font-medium text-sm tracking-wide">Início</a>
-                    <a href="#servicos" class="text-rose-700 hover:text-rose-500 transition-colors font-medium text-sm tracking-wide">Serviços</a>
-                    <a href="#espaco" class="text-rose-700 hover:text-rose-500 transition-colors font-medium text-sm tracking-wide">Espaço</a>
-                    <a href="#depoimentos" class="text-rose-700 hover:text-rose-500 transition-colors font-medium text-sm tracking-wide">Depoimentos</a>
-                    <a href="#contato" class="bg-gradient-to-r from-rose-500 to-lavender-500 text-white px-6 py-2.5 rounded-full hover:opacity-90 transition-all hover:scale-105 font-medium text-sm shadow-lg shadow-rose-500/20">Agendar</a>
-                </div>
-                <button class="md:hidden p-2" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
-                    <i data-lucide="menu" class="w-6 h-6 text-rose-700"></i>
-                </button>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-xl border-t border-rose-100">
-            <div class="px-6 py-5 space-y-4">
-                <a href="#inicio" class="block text-rose-700 font-medium">Início</a>
-                <a href="#servicos" class="block text-rose-700 font-medium">Serviços</a>
-                <a href="#espaco" class="block text-rose-700 font-medium">Espaço</a>
-                <a href="#depoimentos" class="block text-rose-700 font-medium">Depoimentos</a>
-                <a href="#contato" class="block text-rose-500 font-bold">Agendar</a>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Hero -->
-    <section id="inicio" class="hero-pattern min-h-screen flex items-center justify-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-rose-50/80 via-transparent to-rose-50/90"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-white/60 via-transparent to-white/60"></div>
-        
-        <!-- Decorative floating elements -->
-        <div class="absolute top-32 left-10 w-20 h-20 bg-rose-200/30 rounded-full float-animation blur-xl"></div>
-        <div class="absolute bottom-40 right-20 w-32 h-32 bg-lavender-400/20 rounded-full float-animation blur-2xl" style="animation-delay: 2s;"></div>
-        <div class="absolute top-1/3 right-1/4 w-16 h-16 bg-rose-300/20 rounded-full float-animation blur-lg" style="animation-delay: 1s;"></div>
-        
-        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto pt-20">
-            <div class="mb-8 animate-fade-in-up">
-                <span class="inline-block bg-white/80 backdrop-blur-sm text-rose-600 px-5 py-2 rounded-full text-xs font-bold tracking-widest uppercase border border-rose-200">Bem-Estar em Bragança Paulista</span>
+        <!-- Scroll hint -->
+        <a href="#destaques" class="absolute bottom-7 left-1/2 -translate-x-1/2 text-blush-500 hint" aria-label="Rolar para baixo">
+            <i data-lucide="chevron-down" class="w-7 h-7"></i>
+        </a>
+    </section>
+
+    <!-- ===================== DESTAQUES ===================== -->
+    <section id="destaques" class="relative py-24 sm:py-32 bg-white overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-blush-100/60 blur-3xl drift"></div>
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 relative">
+            <div class="max-w-2xl mb-16">
+                <p class="eyebrow text-blush-500 reveal">Por que a Essência</p>
+                <h2 class="fluid-h2 font-display text-stone-800 mt-5 reveal" data-delay="80">Um cuidado que se sente<br>em cada detalhe</h2>
             </div>
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight text-rose-900 animate-fade-in-up delay-200">
-                Renove sua <span class="text-gradient">Essência</span>
-            </h1>
-            <p class="text-lg md:text-xl text-rose-700 mb-10 max-w-2xl mx-auto font-light leading-relaxed animate-fade-in-up delay-300">
-                Momentos de puro relaxamento em um ambiente pensado para o seu bem-estar. 
-                Massagens, tratamentos faciais e terapias holísticas que restauram corpo e mente.
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+                <article class="group p-8 rounded-[1.75rem] bg-cream/70 border border-stone-400/10 card-hover shadow-soft hover:shadow-lift reveal" data-delay="0">
+                    <span class="inline-grid place-items-center w-14 h-14 rounded-2xl bg-gradient-to-br from-blush-300 to-blush-500 text-white shadow-lg shadow-blush-400/25 transition-transform duration-500 group-hover:-translate-y-1">
+                        <i data-lucide="heart-handshake" class="w-7 h-7"></i>
+                    </span>
+                    <h3 class="font-display text-2xl text-stone-800 mt-6 mb-3">Terapias Holísticas</h3>
+                    <p class="text-stone-500 leading-relaxed">Técnicas orientais e ocidentais combinadas para equilibrar corpo, mente e energia em uma única sessão.</p>
+                </article>
+                <article class="group p-8 rounded-[1.75rem] bg-cream/70 border border-stone-400/10 card-hover shadow-soft hover:shadow-lift reveal" data-delay="120">
+                    <span class="inline-grid place-items-center w-14 h-14 rounded-2xl bg-gradient-to-br from-lilac-400 to-lilac-600 text-white shadow-lg shadow-lilac-500/25 transition-transform duration-500 group-hover:-translate-y-1">
+                        <i data-lucide="leaf" class="w-7 h-7"></i>
+                    </span>
+                    <h3 class="font-display text-2xl text-stone-800 mt-6 mb-3">Produtos Naturais</h3>
+                    <p class="text-stone-500 leading-relaxed">Óleos essenciais puros e cosméticos orgânicos, livres de parabenos e sulfatos — respeito à sua pele e ao planeta.</p>
+                </article>
+                <article class="group p-8 rounded-[1.75rem] bg-cream/70 border border-stone-400/10 card-hover shadow-soft hover:shadow-lift reveal" data-delay="240">
+                    <span class="inline-grid place-items-center w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-500 text-white shadow-lg shadow-gold-400/30 transition-transform duration-500 group-hover:-translate-y-1">
+                        <i data-lucide="award" class="w-7 h-7"></i>
+                    </span>
+                    <h3 class="font-display text-2xl text-stone-800 mt-6 mb-3">Equipe Certificada</h3>
+                    <p class="text-stone-500 leading-relaxed">Esteticistas e terapeutas com anos de experiência e formação contínua para um atendimento de excelência.</p>
+                </article>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-px mt-16 rounded-3xl overflow-hidden bg-stone-400/10 border border-stone-400/10 reveal" data-delay="120">
+                <div class="bg-white p-8 text-center">
+                    <p class="font-display text-5xl text-gradient" data-count="12">0</p>
+                    <p class="text-sm tracking-wide text-stone-500 mt-2">Anos de história</p>
+                </div>
+                <div class="bg-white p-8 text-center">
+                    <p class="font-display text-5xl text-gradient" data-count="500" data-suffix="+">0</p>
+                    <p class="text-sm tracking-wide text-stone-500 mt-2">Clientes atendidos</p>
+                </div>
+                <div class="bg-white p-8 text-center">
+                    <p class="font-display text-5xl text-gradient" data-count="18">0</p>
+                    <p class="text-sm tracking-wide text-stone-500 mt-2">Rituais exclusivos</p>
+                </div>
+                <div class="bg-white p-8 text-center">
+                    <p class="font-display text-5xl text-gradient" data-count="98" data-suffix="%">0</p>
+                    <p class="text-sm tracking-wide text-stone-500 mt-2">Satisfação</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SERVIÇOS ===================== -->
+    <section id="servicos" class="relative py-24 sm:py-32 bg-gradient-to-b from-cream to-sand overflow-hidden">
+        <div class="absolute bottom-0 -left-32 w-96 h-96 rounded-full bg-lilac-200/40 blur-3xl drift"></div>
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 relative">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <p class="eyebrow center justify-center text-lilac-500 reveal">Nossos Tratamentos</p>
+                <h2 class="fluid-h2 font-display text-stone-800 mt-5 reveal" data-delay="80">Rituais de bem-estar</h2>
+                <p class="text-stone-500 mt-4 reveal" data-delay="140">Escolha o ritual perfeito para o seu momento de cuidado pessoal.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7" id="servicesGrid">
+                <!-- Card template -->
+                <article class="img-zoom group bg-white rounded-[1.75rem] overflow-hidden shadow-soft hover:shadow-lift card-hover reveal" data-delay="0">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/3997989/pexels-photo-3997989.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Massagem relaxante com óleos" loading="lazy" class="w-full h-full object-cover">
+                        <span class="absolute top-4 right-4 glass text-stone-700 text-xs font-semibold px-3 py-1.5 rounded-full">60 min</span>
+                    </div>
+                    <div class="p-7">
+                        <div class="flex justify-between items-baseline gap-3 mb-2">
+                            <h3 class="font-display text-2xl text-stone-800">Massagem Relaxante</h3>
+                            <span class="font-display text-2xl text-blush-600">R$180</span>
+                        </div>
+                        <p class="text-stone-500 text-sm leading-relaxed mb-5">Movimentos suaves que dissolvem tensões musculares e induzem um relaxamento profundo.</p>
+                        <p class="flex items-center gap-2 text-xs text-blush-500"><i data-lucide="flower" class="w-4 h-4"></i> Inclui aromaterapia</p>
+                    </div>
+                </article>
+
+                <article class="img-zoom group bg-white rounded-[1.75rem] overflow-hidden shadow-soft hover:shadow-lift card-hover reveal" data-delay="120">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/3985360/pexels-photo-3985360.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Tratamento facial de limpeza de pele" loading="lazy" class="w-full h-full object-cover">
+                        <span class="absolute top-4 right-4 glass text-stone-700 text-xs font-semibold px-3 py-1.5 rounded-full">90 min</span>
+                    </div>
+                    <div class="p-7">
+                        <div class="flex justify-between items-baseline gap-3 mb-2">
+                            <h3 class="font-display text-2xl text-stone-800">Limpeza Profunda</h3>
+                            <span class="font-display text-2xl text-blush-600">R$220</span>
+                        </div>
+                        <p class="text-stone-500 text-sm leading-relaxed mb-5">Extração, peeling enzimático e máscara hidratante para uma pele luminosa e renovada.</p>
+                        <p class="flex items-center gap-2 text-xs text-blush-500"><i data-lucide="sparkles" class="w-4 h-4"></i> Produtos orgânicos</p>
+                    </div>
+                </article>
+
+                <article class="img-zoom group bg-white rounded-[1.75rem] overflow-hidden shadow-soft hover:shadow-lift card-hover reveal" data-delay="240">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/3764119/pexels-photo-3764119.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sessão de drenagem linfática" loading="lazy" class="w-full h-full object-cover">
+                        <span class="absolute top-4 right-4 glass text-stone-700 text-xs font-semibold px-3 py-1.5 rounded-full">75 min</span>
+                    </div>
+                    <div class="p-7">
+                        <div class="flex justify-between items-baseline gap-3 mb-2">
+                            <h3 class="font-display text-2xl text-stone-800">Drenagem Linfática</h3>
+                            <span class="font-display text-2xl text-blush-600">R$160</span>
+                        </div>
+                        <p class="text-stone-500 text-sm leading-relaxed mb-5">Técnica manual que ativa a circulação, reduz inchaço e devolve a leveza ao corpo.</p>
+                        <p class="flex items-center gap-2 text-xs text-blush-500"><i data-lucide="droplets" class="w-4 h-4"></i> Resultados visíveis</p>
+                    </div>
+                </article>
+
+                <article class="img-zoom group bg-white rounded-[1.75rem] overflow-hidden shadow-soft hover:shadow-lift card-hover reveal" data-delay="0">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/3997379/pexels-photo-3997379.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Spa dos pés e reflexologia" loading="lazy" class="w-full h-full object-cover">
+                        <span class="absolute top-4 right-4 glass text-stone-700 text-xs font-semibold px-3 py-1.5 rounded-full">45 min</span>
+                    </div>
+                    <div class="p-7">
+                        <div class="flex justify-between items-baseline gap-3 mb-2">
+                            <h3 class="font-display text-2xl text-stone-800">Spa dos Pés</h3>
+                            <span class="font-display text-2xl text-blush-600">R$120</span>
+                        </div>
+                        <p class="text-stone-500 text-sm leading-relaxed mb-5">Imersão, esfoliação, reflexologia e hidratação intensiva para pés cansados.</p>
+                        <p class="flex items-center gap-2 text-xs text-blush-500"><i data-lucide="footprints" class="w-4 h-4"></i> Reflexologia incluída</p>
+                    </div>
+                </article>
+
+                <article class="img-zoom group bg-white rounded-[1.75rem] overflow-hidden shadow-soft hover:shadow-lift card-hover reveal" data-delay="120">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/3997991/pexels-photo-3997991.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Peeling facial avançado" loading="lazy" class="w-full h-full object-cover">
+                        <span class="absolute top-4 right-4 glass text-stone-700 text-xs font-semibold px-3 py-1.5 rounded-full">60 min</span>
+                    </div>
+                    <div class="p-7">
+                        <div class="flex justify-between items-baseline gap-3 mb-2">
+                            <h3 class="font-display text-2xl text-stone-800">Peeling de Diamante</h3>
+                            <span class="font-display text-2xl text-blush-600">R$280</span>
+                        </div>
+                        <p class="text-stone-500 text-sm leading-relaxed mb-5">Microdermoabrasão que renova a pele, suaviza manchas e linhas finas.</p>
+                        <p class="flex items-center gap-2 text-xs text-blush-500"><i data-lucide="gem" class="w-4 h-4"></i> Tecnologia avançada</p>
+                    </div>
+                </article>
+
+                <article class="img-zoom group bg-white rounded-[1.75rem] overflow-hidden shadow-soft hover:shadow-lift card-hover reveal" data-delay="240">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/6187662/pexels-photo-6187662.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Banho de imersão com aromaterapia" loading="lazy" class="w-full h-full object-cover">
+                        <span class="absolute top-4 right-4 glass text-stone-700 text-xs font-semibold px-3 py-1.5 rounded-full">120 min</span>
+                    </div>
+                    <div class="p-7">
+                        <div class="flex justify-between items-baseline gap-3 mb-2">
+                            <h3 class="font-display text-2xl text-stone-800">Ofurô & Aromaterapia</h3>
+                            <span class="font-display text-2xl text-blush-600">R$200</span>
+                        </div>
+                        <p class="text-stone-500 text-sm leading-relaxed mb-5">Imersão em águas termais com óleos essenciais seguida de massagem relaxante.</p>
+                        <p class="flex items-center gap-2 text-xs text-blush-500"><i data-lucide="flame" class="w-4 h-4"></i> Experiência completa</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== ESPAÇO ===================== -->
+    <section id="espaco" class="relative py-24 sm:py-32 bg-white overflow-hidden">
+        <div class="absolute top-16 -left-24 w-80 h-80 rounded-full bg-blush-100/50 blur-3xl drift"></div>
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 relative">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+                <div>
+                    <p class="eyebrow text-lilac-500 reveal from-left">Nosso Espaço</p>
+                    <h2 class="fluid-h2 font-display text-stone-800 mt-5 mb-6 reveal from-left" data-delay="80">Um refúgio de tranquilidade</h2>
+                    <p class="text-stone-500 leading-relaxed mb-5 reveal from-left" data-delay="140">
+                        No coração de Bragança Paulista, a Essência foi projetada como um verdadeiro refúgio urbano. Materiais naturais, iluminação suave e aromas terapêuticos transportam você para a calma desde o primeiro passo.
+                    </p>
+                    <p class="text-stone-500 leading-relaxed mb-9 reveal from-left" data-delay="200">
+                        Salas privativas para tratamentos individuais e duplos, área de relaxamento com chá de ervas e um jardim zen onde sua experiência de bem-estar se estende.
+                    </p>
+                    <div class="grid grid-cols-2 gap-5 reveal from-left" data-delay="260">
+                        <div class="flex items-center gap-3">
+                            <span class="w-11 h-11 rounded-full bg-blush-50 grid place-items-center text-blush-500"><i data-lucide="trees" class="w-5 h-5"></i></span>
+                            <span class="text-stone-700 text-sm font-medium">Jardim Zen</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-11 h-11 rounded-full bg-blush-50 grid place-items-center text-blush-500"><i data-lucide="wind" class="w-5 h-5"></i></span>
+                            <span class="text-stone-700 text-sm font-medium">Climatizado</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-11 h-11 rounded-full bg-blush-50 grid place-items-center text-blush-500"><i data-lucide="volume-x" class="w-5 h-5"></i></span>
+                            <span class="text-stone-700 text-sm font-medium">Ambiente silencioso</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-11 h-11 rounded-full bg-blush-50 grid place-items-center text-blush-500"><i data-lucide="flame" class="w-5 h-5"></i></span>
+                            <span class="text-stone-700 text-sm font-medium">Iluminação suave</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="img-zoom rounded-3xl overflow-hidden h-60 shadow-soft reveal zoom" data-delay="0">
+                        <img src="https://images.pexels.com/photos/3865792/pexels-photo-3865792.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Sala de massagem aconchegante" loading="lazy" class="w-full h-full object-cover">
+                    </div>
+                    <div class="img-zoom rounded-3xl overflow-hidden h-60 mt-8 shadow-soft reveal zoom" data-delay="120">
+                        <img src="https://images.pexels.com/photos/6663571/pexels-photo-6663571.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Detalhes de decoração com velas e flores" loading="lazy" class="w-full h-full object-cover">
+                    </div>
+                    <div class="img-zoom rounded-3xl overflow-hidden h-60 -mt-8 shadow-soft reveal zoom" data-delay="180">
+                        <img src="https://images.pexels.com/photos/3997381/pexels-photo-3997381.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Produtos naturais de tratamento" loading="lazy" class="w-full h-full object-cover">
+                    </div>
+                    <div class="img-zoom rounded-3xl overflow-hidden h-60 shadow-soft reveal zoom" data-delay="300">
+                        <img src="https://images.pexels.com/photos/6187652/pexels-photo-6187652.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Área de relaxamento do spa" loading="lazy" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== RITUAIS (parallax band) ===================== -->
+    <section id="rituais" class="relative py-28 sm:py-36 overflow-hidden">
+        <div class="absolute inset-0 -z-10" data-parallax="0.12">
+            <img src="https://images.pexels.com/photos/3188/love-romantic-bath-candlelight.jpg?auto=compress&cs=tinysrgb&w=1920" alt="" loading="lazy" class="w-full h-[124%] object-cover">
+        </div>
+        <div class="absolute inset-0 -z-10 bg-stone-800/55"></div>
+        <div class="max-w-3xl mx-auto px-5 sm:px-8 text-center text-white">
+            <p class="eyebrow center justify-center text-gold-300 reveal">Rituais Exclusivos</p>
+            <h2 class="fluid-h2 font-display mt-5 mb-6 reveal" data-delay="80">Uma pausa que você merece</h2>
+            <p class="fluid-lead font-light text-white/85 leading-relaxed reveal" data-delay="160">
+                Combine tratamentos em jornadas completas de bem-estar — desenhadas para presentear o corpo e silenciar a mente.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-400">
-                <a href="https://wa.me/5511999999999" target="_blank" class="btn-pulse bg-gradient-to-r from-rose-500 to-rose-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:opacity-90 transition-all hover:scale-105 flex items-center justify-center gap-2 shadow-xl shadow-rose-500/30">
-                    <i data-lucide="calendar-heart" class="w-5 h-5"></i>
-                    Agendar Consulta
+            <div class="flex flex-wrap justify-center gap-4 mt-10 reveal" data-delay="240">
+                <a href="#contato" class="sheen btn-primary inline-flex items-center gap-2.5 px-8 py-4 rounded-full font-medium text-lg shadow-xl shadow-black/20 transition-transform hover:scale-[1.03]">
+                    <i data-lucide="gift" class="w-5 h-5"></i> Montar meu ritual
                 </a>
-                <a href="#servicos" class="bg-white/80 backdrop-blur-sm text-rose-700 border-2 border-rose-300 px-8 py-4 rounded-full font-bold text-lg hover:bg-white transition-all flex items-center justify-center gap-2">
-                    <i data-lucide="sparkles" class="w-5 h-5"></i>
-                    Conhecer Serviços
+                <a href="#servicos" class="glass-dark text-white inline-flex items-center gap-2.5 px-8 py-4 rounded-full font-medium text-lg transition-transform hover:scale-[1.02]">
+                    <i data-lucide="list" class="w-5 h-5"></i> Ver tratamentos
                 </a>
             </div>
-            
-            <!-- Social proof -->
-            <div class="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6 animate-fade-in delay-500">
-                <div class="flex -space-x-3">
-                    <img src="https://images.pexels.com/photos/6627936/pexels-photo-6627936.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop&crop=face" alt="Cliente" class="w-10 h-10 rounded-full border-2 border-white object-cover">
-                    <img src="https://images.pexels.com/photos/6628216/pexels-photo-6628216.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop&crop=face" alt="Cliente" class="w-10 h-10 rounded-full border-2 border-white object-cover">
-                    <img src="https://images.pexels.com/photos/6628309/pexels-photo-6628309.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop&crop=face" alt="Cliente" class="w-10 h-10 rounded-full border-2 border-white object-cover">
-                </div>
-                <div class="flex items-center gap-1">
-                    <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
-                    <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
-                    <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
-                    <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
-                    <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
-                    <span class="text-rose-700 font-semibold ml-2">500 clientes satisfeitos</span>
-                </div>
-            </div>
-            
-            <div class="mt-12 float-animation">
-                <i data-lucide="chevron-down" class="w-8 h-8 text-rose-400 mx-auto animate-bounce"></i>
-            </div>
         </div>
     </section>
 
-    <!-- Destaques -->
-    <section class="py-20 bg-white relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-64 h-64 bg-rose-100 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl opacity-50"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16 animate-fade-in-up">
-                <span class="text-rose-500 font-semibold tracking-wider uppercase text-xs">Por que nos escolher</span>
-                <h2 class="text-4xl md:text-5xl font-bold mt-3 text-rose-900">Cuide de Você</h2>
-                <p class="text-rose-600 mt-4 max-w-xl mx-auto">Cada detalhe do nosso spa foi pensado para oferecer uma experiência única de relaxamento e rejuvenescimento.</p>
+    <!-- ===================== DEPOIMENTOS ===================== -->
+    <section id="depoimentos" class="relative py-24 sm:py-32 bg-gradient-to-b from-sand to-cream overflow-hidden">
+        <div class="absolute top-0 -right-24 w-80 h-80 rounded-full bg-lilac-200/40 blur-3xl drift"></div>
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 relative">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <p class="eyebrow center justify-center text-blush-500 reveal">Depoimentos</p>
+                <h2 class="fluid-h2 font-display text-stone-800 mt-5 reveal" data-delay="80">Quem vive, recomenda</h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center p-8 rounded-3xl bg-rose-50/50 border border-rose-100 card-hover soft-shadow animate-fade-in-up delay-100">
-                    <div class="w-16 h-16 bg-gradient-to-br from-rose-400 to-rose-300 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-rose-400/20">
-                        <i data-lucide="heart-handshake" class="w-8 h-8 text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-rose-900">Terapias Holísticas</h3>
-                    <p class="text-rose-600 leading-relaxed">Combinamos técnicas orientais e ocidentais para um equilíbrio completo entre corpo, mente e espírito.</p>
-                </div>
-                <div class="text-center p-8 rounded-3xl bg-rose-50/50 border border-rose-100 card-hover soft-shadow animate-fade-in-up delay-200">
-                    <div class="w-16 h-16 bg-gradient-to-br from-lavender-400 to-lavender-500 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-lavender-500/20">
-                        <i data-lucide="leaf" class="w-8 h-8 text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-rose-900">Produtos Naturais</h3>
-                    <p class="text-rose-600 leading-relaxed">Utilizamos apenas óleos essenciais puros e cosméticos orgânicos, livres de parabenos e sulfatos.</p>
-                </div>
-                <div class="text-center p-8 rounded-3xl bg-rose-50/50 border border-rose-100 card-hover soft-shadow animate-fade-in-up delay-300">
-                    <div class="w-16 h-16 bg-gradient-to-br from-rose-500 to-rose-400 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-rose-500/20">
-                        <i data-lucide="award" class="w-8 h-8 text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-rose-900">Profissionais Certificados</h3>
-                    <p class="text-rose-600 leading-relaxed">Nossa equipe conta com esteticistas e terapeutas certificados com anos de experiência.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Serviços -->
-    <section id="servicos" class="py-24 bg-gradient-to-b from-rose-50 to-white relative overflow-hidden">
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-lavender-400/10 rounded-full translate-y-1/2 -translate-x-1/4 blur-3xl"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16 animate-fade-in-up">
-                <span class="text-lavender-500 font-semibold tracking-wider uppercase text-xs">Nossos Tratamentos</span>
-                <h2 class="text-4xl md:text-5xl font-bold mt-3 text-rose-900">Experiências de Bem-Estar</h2>
-                <p class="text-rose-600 mt-4 max-w-xl mx-auto">Escolha o ritual perfeito para o seu momento de cuidado pessoal.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="bg-white rounded-3xl overflow-hidden soft-shadow card-hover animate-fade-in-up delay-100">
-                    <div class="h-56 overflow-hidden relative">
-                        <img src="https://images.pexels.com/photos/305941/pexels-photo-305941.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Massagem relaxante" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-                            <span class="text-rose-600 font-bold text-sm">60 min</span>
-                        </div>
-                    </div>
-                    <div class="p-7">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold text-rose-900">Massagem Relaxante</h3>
-                            <span class="text-rose-500 font-bold text-lg">R$ 180</span>
-                        </div>
-                        <p class="text-rose-600 text-sm mb-4 leading-relaxed">Movimentos suaves que aliviam tensões musculares e promovem um profundo estado de relaxamento.</p>
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="clock" class="w-4 h-4 text-rose-400"></i>
-                            <span class="text-xs text-rose-500">Inclui aromaterapia</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Card 2 -->
-                <div class="bg-white rounded-3xl overflow-hidden soft-shadow card-hover animate-fade-in-up delay-200">
-                    <div class="h-56 overflow-hidden relative">
-                        <img src="https://images.pexels.com/photos/305942/pexels-photo-305942.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Limpeza de pele" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-                            <span class="text-rose-600 font-bold text-sm">90 min</span>
-                        </div>
-                    </div>
-                    <div class="p-7">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold text-rose-900">Limpeza de Pele Profunda</h3>
-                            <span class="text-rose-500 font-bold text-lg">R$ 220</span>
-                        </div>
-                        <p class="text-rose-600 text-sm mb-4 leading-relaxed">Protocolo completo com extração, peeling enzimático e máscara hidratante para pele luminosa.</p>
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="sparkles" class="w-4 h-4 text-rose-400"></i>
-                            <span class="text-xs text-rose-500">Produtos orgânicos</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Card 3 -->
-                <div class="bg-white rounded-3xl overflow-hidden soft-shadow card-hover animate-fade-in-up delay-300">
-                    <div class="h-56 overflow-hidden relative">
-                        <img src="https://images.pexels.com/photos/3764119/pexels-photo-3764119.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Drenagem linfática" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-                            <span class="text-rose-600 font-bold text-sm">75 min</span>
-                        </div>
-                    </div>
-                    <div class="p-7">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold text-rose-900">Drenagem Linfática</h3>
-                            <span class="text-rose-500 font-bold text-lg">R$ 160</span>
-                        </div>
-                        <p class="text-rose-600 text-sm mb-4 leading-relaxed">Técnica manual que ativa a circulação linfática, reduzindo inchaço e celulite.</p>
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="droplets" class="w-4 h-4 text-rose-400"></i>
-                            <span class="text-xs text-rose-500">Resultados visíveis</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Card 4 -->
-                <div class="bg-white rounded-3xl overflow-hidden soft-shadow card-hover animate-fade-in-up delay-100">
-                    <div class="h-56 overflow-hidden relative">
-                        <img src="https://images.pexels.com/photos/3997983/pexels-photo-3997983.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Spa dos pés" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-                            <span class="text-rose-600 font-bold text-sm">45 min</span>
-                        </div>
-                    </div>
-                    <div class="p-7">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold text-rose-900">Spa dos Pés</h3>
-                            <span class="text-rose-500 font-bold text-lg">R$ 120</span>
-                        </div>
-                        <p class="text-rose-600 text-sm mb-4 leading-relaxed">Banho de imersão, esfoliação, reflexologia e hidratação para pés cansados.</p>
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="footprints" class="w-4 h-4 text-rose-400"></i>
-                            <span class="text-xs text-rose-500">Reflexologia incluída</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Card 5 -->
-                <div class="bg-white rounded-3xl overflow-hidden soft-shadow card-hover animate-fade-in-up delay-200">
-                    <div class="h-56 overflow-hidden relative">
-                        <img src="https://images.pexels.com/photos/4161601/pexels-photo-4161601.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Peeling de diamante" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-                            <span class="text-rose-600 font-bold text-sm">60 min</span>
-                        </div>
-                    </div>
-                    <div class="p-7">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold text-rose-900">Peeling de Diamante</h3>
-                            <span class="text-rose-500 font-bold text-lg">R$ 280</span>
-                        </div>
-                        <p class="text-rose-600 text-sm mb-4 leading-relaxed">Microdermoabrasão que renova a pele, reduzindo manchas, acne e linhas finas.</p>
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="gem" class="w-4 h-4 text-rose-400"></i>
-                            <span class="text-xs text-rose-500">Tecnologia avançada</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Card 6 -->
-                <div class="bg-white rounded-3xl overflow-hidden soft-shadow card-hover animate-fade-in-up delay-300">
-                    <div class="h-56 overflow-hidden relative">
-                        <img src="https://images.pexels.com/photos/4505973/pexels-photo-4505973.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Banho de ofurô" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-                            <span class="text-rose-600 font-bold text-sm">120 min</span>
-                        </div>
-                    </div>
-                    <div class="p-7">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold text-rose-900">Banho de Ofurô & Aromaterapia</h3>
-                            <span class="text-rose-500 font-bold text-lg">R$ 200</span>
-                        </div>
-                        <p class="text-rose-600 text-sm mb-4 leading-relaxed">Imersão em águas termais com óleos essenciais seguida de massagem relaxante.</p>
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="flame" class="w-4 h-4 text-rose-400"></i>
-                            <span class="text-xs text-rose-500">Experiência completa</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Espaço / Ambiente -->
-    <section id="espaco" class="py-24 bg-white relative overflow-hidden">
-        <div class="absolute top-20 left-0 w-72 h-72 bg-rose-100 rounded-full -translate-x-1/2 blur-3xl opacity-60"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="animate-slide-left">
-                    <span class="text-lavender-500 font-semibold tracking-wider uppercase text-xs">Nosso Espaço</span>
-                    <h2 class="text-4xl md:text-5xl font-bold mt-3 mb-6 text-rose-900">Um Refúgio de Tranquilidade</h2>
-                    <p class="text-rose-600 leading-relaxed mb-6">
-                        Localizado no coração de Bragança Paulista, o Essência Spa foi projetado para ser um verdadeiro refúgio urbano. 
-                        Cada ambiente foi cuidadosamente decorado com materiais naturais, iluminação suave e aromas terapêuticos 
-                        que transportam você para um estado de paz desde o primeiro passo.
-                    </p>
-                    <p class="text-rose-600 leading-relaxed mb-8">
-                        Contamos com salas privativas para tratamentos individuais e duplos, área de relaxamento com chá de ervas, 
-                        e um jardim zen onde você pode estender sua experiência de bem-estar.
-                    </p>
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-rose-100 rounded-full flex items-center justify-center">
-                                <i data-lucide="trees" class="w-5 h-5 text-rose-500"></i>
-                            </div>
-                            <span class="text-rose-700 font-medium text-sm">Jardim Zen</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-rose-100 rounded-full flex items-center justify-center">
-                                <i data-lucide="thermometer-snowflake" class="w-5 h-5 text-rose-500"></i>
-                            </div>
-                            <span class="text-rose-700 font-medium text-sm">Climatizado</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-rose-100 rounded-full flex items-center justify-center">
-                                <i data-lucide="volume-x" class="w-5 h-5 text-rose-500"></i>
-                            </div>
-                            <span class="text-rose-700 font-medium text-sm">Ambiente Silencioso</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-rose-100 rounded-full flex items-center justify-center">
-                                <i data-lucide="candlestick-chart" class="w-5 h-5 text-rose-500"></i>
-                            </div>
-                            <span class="text-rose-700 font-medium text-sm">Iluminação Suave</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-4 animate-slide-right">
-                    <div class="rounded-2xl overflow-hidden h-64">
-                        <img src="https://images.pexels.com/photos/5240677/pexels-photo-5240677.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Sala de massagem" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
-                    </div>
-                    <div class="rounded-2xl overflow-hidden h-64 mt-8">
-                        <img src="https://images.pexels.com/photos/5938363/pexels-photo-5938363.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Decoração do spa" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
-                    </div>
-                    <div class="rounded-2xl overflow-hidden h-64 -mt-8">
-                        <img src="https://images.pexels.com/photos/6627604/pexels-photo-6627604.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Detalhes do spa" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
-                    </div>
-                    <div class="rounded-2xl overflow-hidden h-64">
-                        <img src="https://images.pexels.com/photos/6628526/pexels-photo-6628526.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Área de relaxamento" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Depoimentos -->
-    <section id="depoimentos" class="py-24 bg-gradient-to-b from-rose-50 to-white relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-80 h-80 bg-lavender-400/10 rounded-full -translate-y-1/2 translate-x-1/4 blur-3xl"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16 animate-fade-in-up">
-                <span class="text-rose-500 font-semibold tracking-wider uppercase text-xs">Depoimentos</span>
-                <h2 class="text-4xl md:text-5xl font-bold mt-3 text-rose-900">O que Nossas Clientes Dizem</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-3xl soft-shadow card-hover animate-fade-in-up delay-100">
-                    <div class="flex items-center gap-1 mb-5">
-                        <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
-                    </div>
-                    <p class="text-rose-700 mb-6 italic leading-relaxed">"A massagem com pedras quentes foi a melhor experiência que já tive. Saí de lá flutuando. O ambiente é lindo e o atendimento é impecável!"</p>
-                    <div class="flex items-center gap-4">
-                        <img src="https://images.pexels.com/photos/6627936/pexels-photo-6627936.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop&crop=face" alt="Mariana Santos" class="w-12 h-12 rounded-full object-cover">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+                <figure class="bg-white p-8 rounded-[1.75rem] shadow-soft hover:shadow-lift card-hover reveal" data-delay="0">
+                    <i data-lucide="quote" class="w-9 h-9 text-blush-200 mb-4"></i>
+                    <blockquote class="text-stone-600 italic leading-relaxed mb-6">"A massagem com pedras quentes foi a melhor experiência que já tive. Saí de lá flutuando. O ambiente é lindo e o atendimento impecável!"</blockquote>
+                    <figcaption class="flex items-center gap-4">
+                        <img src="https://images.pexels.com/photos/6627936/pexels-photo-6627936.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop&crop=face" alt="" loading="lazy" class="w-12 h-12 rounded-full object-cover">
                         <div>
-                            <p class="font-semibold text-rose-900">Mariana Santos</p>
-                            <p class="text-rose-400 text-sm">Cliente desde 2022</p>
+                            <p class="font-medium text-stone-800">Mariana Santos</p>
+                            <p class="text-blush-400 text-sm">Cliente desde 2022</p>
                         </div>
-                    </div>
-                </div>
-                <div class="bg-white p-8 rounded-3xl soft-shadow card-hover animate-fade-in-up delay-200">
-                    <div class="flex items-center gap-1 mb-5">
-                        <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
-                    </div>
-                    <p class="text-rose-700 mb-6 italic leading-relaxed">"Levo minha mãe toda semana para o spa dos pés. Ela adora! A equipe é super gentil e o espaço é maravilhoso. Recomendo demais."</p>
-                    <div class="flex items-center gap-4">
-                        <img src="https://images.pexels.com/photos/6628216/pexels-photo-6628216.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop&crop=face" alt="Ana Paula Mendes" class="w-12 h-12 rounded-full object-cover">
+                    </figcaption>
+                </figure>
+                <figure class="bg-white p-8 rounded-[1.75rem] shadow-soft hover:shadow-lift card-hover reveal" data-delay="120">
+                    <i data-lucide="quote" class="w-9 h-9 text-blush-200 mb-4"></i>
+                    <blockquote class="text-stone-600 italic leading-relaxed mb-6">"Levo minha mãe toda semana para o spa dos pés. Ela adora! A equipe é gentil e o espaço é maravilhoso. Recomendo demais."</blockquote>
+                    <figcaption class="flex items-center gap-4">
+                        <img src="https://images.pexels.com/photos/6628216/pexels-photo-6628216.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop&crop=face" alt="" loading="lazy" class="w-12 h-12 rounded-full object-cover">
                         <div>
-                            <p class="font-semibold text-rose-900">Ana Paula Mendes</p>
-                            <p class="text-rose-400 text-sm">Cliente desde 2021</p>
+                            <p class="font-medium text-stone-800">Ana Paula Mendes</p>
+                            <p class="text-blush-400 text-sm">Cliente desde 2021</p>
                         </div>
-                    </div>
-                </div>
-                <div class="bg-white p-8 rounded-3xl soft-shadow card-hover animate-fade-in-up delay-300">
-                    <div class="flex items-center gap-1 mb-5">
-                        <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
-                    </div>
-                    <p class="text-rose-700 mb-6 italic leading-relaxed">"Fiz o peeling de diamante e o resultado foi incrível. Minha pele nunca esteve tão luminosa. Vale cada centavo investido!"</p>
-                    <div class="flex items-center gap-4">
-                        <img src="https://images.pexels.com/photos/6628309/pexels-photo-6628309.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop&crop=face" alt="Carolina Oliveira" class="w-12 h-12 rounded-full object-cover">
+                    </figcaption>
+                </figure>
+                <figure class="bg-white p-8 rounded-[1.75rem] shadow-soft hover:shadow-lift card-hover reveal" data-delay="240">
+                    <i data-lucide="quote" class="w-9 h-9 text-blush-200 mb-4"></i>
+                    <blockquote class="text-stone-600 italic leading-relaxed mb-6">"Fiz o peeling de diamante e o resultado foi incrível. Minha pele nunca esteve tão luminosa. Vale cada centavo investido!"</blockquote>
+                    <figcaption class="flex items-center gap-4">
+                        <img src="https://images.pexels.com/photos/6628309/pexels-photo-6628309.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop&crop=face" alt="" loading="lazy" class="w-12 h-12 rounded-full object-cover">
                         <div>
-                            <p class="font-semibold text-rose-900">Carolina Oliveira</p>
-                            <p class="text-rose-400 text-sm">Cliente desde 2023</p>
+                            <p class="font-medium text-stone-800">Carolina Oliveira</p>
+                            <p class="text-blush-400 text-sm">Cliente desde 2023</p>
                         </div>
-                    </div>
-                </div>
+                    </figcaption>
+                </figure>
             </div>
         </div>
     </section>
 
-    <!-- CTA / Agendamento -->
-    <section id="contato" class="py-24 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-r from-rose-400/90 to-lavender-500/90"></div>
-        <div class="absolute inset-0 opacity-20">
-            <div class="absolute top-10 left-1/4 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-            <div class="absolute bottom-10 right-1/4 w-80 h-80 bg-white rounded-full blur-3xl"></div>
+    <!-- ===================== CTA / CONTATO ===================== -->
+    <section id="contato" class="relative py-24 sm:py-32 overflow-hidden">
+        <div class="absolute inset-0 -z-10 bg-gradient-to-br from-blush-500 via-blush-600 to-lilac-600"></div>
+        <div class="absolute inset-0 -z-10 opacity-25">
+            <div class="absolute top-8 left-1/4 w-72 h-72 bg-white rounded-full blur-3xl floaty"></div>
+            <div class="absolute bottom-8 right-1/4 w-80 h-80 bg-white rounded-full blur-3xl floaty-2"></div>
         </div>
-        <div class="max-w-4xl mx-auto px-4 text-center relative z-10 animate-scale-in">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Reserve seu Momento</h2>
-            <p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto">Agende sua visita e presenteie-se com um momento de cuidado e relaxamento. Sua pele e seu corpo agradecem.</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="https://wa.me/5511999999999" target="_blank" class="bg-white text-rose-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-rose-50 transition-all hover:scale-105 shadow-xl flex items-center justify-center gap-2">
-                    <i data-lucide="message-circle" class="w-5 h-5"></i>
-                    Agendar pelo WhatsApp
+        <div class="max-w-4xl mx-auto px-5 sm:px-8 text-center text-white">
+            <p class="eyebrow center justify-center text-white/80 reveal">Reserve seu momento</p>
+            <h2 class="fluid-h2 font-display mt-5 mb-5 reveal" data-delay="80">Presenteie-se com bem-estar</h2>
+            <p class="fluid-lead font-light text-white/90 max-w-2xl mx-auto reveal" data-delay="140">
+                Agende sua visita e deixe que cuidemos de você. Sua pele, seu corpo e sua mente agradecem.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10 reveal" data-delay="220">
+                <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" class="sheen bg-white text-blush-600 inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full font-medium text-lg shadow-xl transition-transform hover:scale-[1.03]">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i> Agendar pelo WhatsApp
                 </a>
-                <a href="tel:+5511999999999" class="bg-white/20 border-2 border-white/40 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/30 transition-all flex items-center justify-center gap-2">
-                    <i data-lucide="phone" class="w-5 h-5"></i>
-                    Ligar: (11) 99999-9999
+                <a href="tel:+5511999999999" class="glass-dark text-white inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full font-medium text-lg transition-transform hover:scale-[1.02]">
+                    <i data-lucide="phone" class="w-5 h-5"></i> (11) 99999-9999
                 </a>
             </div>
-            <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-8 text-white/80 text-sm">
-                <div class="flex items-center gap-2">
-                    <i data-lucide="map-pin" class="w-4 h-4"></i>
-                    <span>R. das Flores, 123 — Centro, Bragança Paulista</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="clock" class="w-4 h-4"></i>
-                    <span>Seg-Sáb: 9h às 19h</span>
-                </div>
+            <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8 text-white/85 text-sm reveal" data-delay="300">
+                <p class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> R. das Flores, 123 — Centro, Bragança Paulista</p>
+                <p class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4"></i> Seg–Sáb · 9h às 19h</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-rose-900 text-rose-200 py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="bg-stone-800 text-stone-400 pt-16 pb-10">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
                 <div>
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-8 h-8 bg-gradient-to-br from-rose-400 to-lavender-500 rounded-full flex items-center justify-center">
-                            <i data-lucide="flower-2" class="w-4 h-4 text-white"></i>
-                        </div>
-                        <span class="text-lg font-bold text-white" style="font-family: 'Lora', serif;">Essência Spa</span>
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-9 h-9 rounded-full bg-gradient-to-br from-blush-400 to-lilac-500 grid place-items-center"><i data-lucide="flower-2" class="w-4 h-4 text-white"></i></span>
+                        <span class="font-display text-xl text-white">Essência Spa</span>
                     </div>
-                    <p class="text-sm leading-relaxed text-rose-300">Transformando momentos de cuidado em experiências inesquecíveis de bem-estar e beleza em Bragança Paulista.</p>
+                    <p class="text-sm leading-relaxed text-stone-400">Transformando momentos de cuidado em experiências inesquecíveis de bem-estar em Bragança Paulista.</p>
                 </div>
-                <div>
-                    <h4 class="text-white font-bold mb-4">Links Rápidos</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#servicos" class="text-rose-300 hover:text-white transition-colors">Nossos Serviços</a></li>
-                        <li><a href="#espaco" class="text-rose-300 hover:text-white transition-colors">O Espaço</a></li>
-                        <li><a href="#depoimentos" class="text-rose-300 hover:text-white transition-colors">Depoimentos</a></li>
-                        <li><a href="#contato" class="text-rose-300 hover:text-white transition-colors">Agendamento</a></li>
+                <nav aria-label="Links rápidos">
+                    <h3 class="text-white font-medium mb-4 tracking-wide">Navegação</h3>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#servicos" class="hover:text-blush-300 transition-colors">Serviços</a></li>
+                        <li><a href="#espaco" class="hover:text-blush-300 transition-colors">O Espaço</a></li>
+                        <li><a href="#rituais" class="hover:text-blush-300 transition-colors">Rituais</a></li>
+                        <li><a href="#depoimentos" class="hover:text-blush-300 transition-colors">Depoimentos</a></li>
                     </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold mb-4">Serviços</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#servicos" class="text-rose-300 hover:text-white transition-colors">Massagem Relaxante</a></li>
-                        <li><a href="#servicos" class="text-rose-300 hover:text-white transition-colors">Limpeza de Pele</a></li>
-                        <li><a href="#servicos" class="text-rose-300 hover:text-white transition-colors">Drenagem Linfática</a></li>
-                        <li><a href="#servicos" class="text-rose-300 hover:text-white transition-colors">Pacotes Especiais</a></li>
+                </nav>
+                <nav aria-label="Serviços">
+                    <h3 class="text-white font-medium mb-4 tracking-wide">Tratamentos</h3>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#servicos" class="hover:text-blush-300 transition-colors">Massagem Relaxante</a></li>
+                        <li><a href="#servicos" class="hover:text-blush-300 transition-colors">Limpeza de Pele</a></li>
+                        <li><a href="#servicos" class="hover:text-blush-300 transition-colors">Drenagem Linfática</a></li>
+                        <li><a href="#servicos" class="hover:text-blush-300 transition-colors">Pacotes Especiais</a></li>
                     </ul>
-                </div>
+                </nav>
                 <div>
-                    <h4 class="text-white font-bold mb-4">Contato</h4>
+                    <h3 class="text-white font-medium mb-4 tracking-wide">Contato</h3>
                     <div class="space-y-3 text-sm">
-                        <a href="tel:+5511999999999" class="flex items-center gap-2 text-rose-300 hover:text-white transition-colors">
-                            <i data-lucide="phone" class="w-4 h-4"></i> (11) 99999-9999
-                        </a>
-                        <a href="mailto:contato@essenciaspa.com.br" class="flex items-center gap-2 text-rose-300 hover:text-white transition-colors">
-                            <i data-lucide="mail" class="w-4 h-4"></i> contato@essenciaspa.com.br
-                        </a>
-                        <a href="https://instagram.com" target="_blank" class="flex items-center gap-2 text-rose-300 hover:text-white transition-colors">
-                            <i data-lucide="instagram" class="w-4 h-4"></i> @essenciaspa
-                        </a>
+                        <a href="tel:+5511999999999" class="flex items-center gap-2 hover:text-blush-300 transition-colors"><i data-lucide="phone" class="w-4 h-4"></i> (11) 99999-9999</a>
+                        <a href="mailto:contato@essenciaspa.com.br" class="flex items-center gap-2 hover:text-blush-300 transition-colors"><i data-lucide="mail" class="w-4 h-4"></i> contato@essenciaspa.com.br</a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener" class="flex items-center gap-2 hover:text-blush-300 transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i> @essenciaspa</a>
                     </div>
                 </div>
             </div>
-            <div class="border-t border-rose-800 mt-12 pt-8 text-center text-sm text-rose-400">
-                <p> 2024 Essência Spa. Desenvolvido por <a href="https://github.com/JulioAkaminee" class="text-rose-300 hover:text-white transition-colors">Akamine Web Studio</a>.</p>
+            <div class="border-t border-stone-700/60 mt-12 pt-8 text-center text-sm text-stone-500">
+                <p>© 2026 Essência Spa. Desenvolvido por <a href="https://github.com/JulioAkaminee" class="text-stone-300 hover:text-blush-300 transition-colors">Akamine Web Studio</a>.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Back to top -->
+    <button id="toTop" class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full btn-primary shadow-lift grid place-items-center opacity-0 translate-y-4 pointer-events-none transition-all duration-400" aria-label="Voltar ao topo">
+        <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </button>
+
     <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-        
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('shadow-md');
-                navbar.classList.remove('bg-white/80');
-                navbar.classList.add('bg-white/95');
+    (function () {
+        'use strict';
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function init() {
+            if (window.lucide) lucide.createIcons();
+
+            /* ---------- Scroll reveal (IntersectionObserver + stagger) ---------- */
+            var reveals = document.querySelectorAll('.reveal');
+            if ('IntersectionObserver' in window && !reduceMotion) {
+                var io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (e) {
+                        if (e.isIntersecting) {
+                            var d = parseInt(e.target.getAttribute('data-delay') || '0', 10);
+                            setTimeout(function () { e.target.classList.add('is-visible'); }, d);
+                            io.unobserve(e.target);
+                        }
+                    });
+                }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
+                reveals.forEach(function (el) { io.observe(el); });
             } else {
-                navbar.classList.remove('shadow-md');
-                navbar.classList.remove('bg-white/95');
-                navbar.classList.add('bg-white/80');
+                reveals.forEach(function (el) { el.classList.add('is-visible'); });
             }
-        });
-        
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            /* ---------- Animated counters ---------- */
+            var counters = document.querySelectorAll('[data-count]');
+            if ('IntersectionObserver' in window && !reduceMotion) {
+                var co = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (e) {
+                        if (!e.isIntersecting) return;
+                        var el = e.target, target = +el.getAttribute('data-count'),
+                            suffix = el.getAttribute('data-suffix') || '', start = null;
+                        function step(ts) {
+                            if (!start) start = ts;
+                            var p = Math.min((ts - start) / 1600, 1);
+                            var eased = 1 - Math.pow(1 - p, 3);
+                            el.textContent = Math.round(eased * target) + suffix;
+                            if (p < 1) requestAnimationFrame(step);
+                        }
+                        requestAnimationFrame(step);
+                        co.unobserve(el);
+                    });
+                }, { threshold: 0.5 });
+                counters.forEach(function (el) { co.observe(el); });
+            } else {
+                counters.forEach(function (el) { el.textContent = el.getAttribute('data-count') + (el.getAttribute('data-suffix') || ''); });
+            }
+
+            /* ---------- Navbar scroll state + progress + back to top ---------- */
+            var navbar = document.getElementById('navbar');
+            var navInner = document.getElementById('navInner');
+            var progress = document.getElementById('progress');
+            var toTop = document.getElementById('toTop');
+            var ticking = false;
+
+            function onScroll() {
+                var y = window.scrollY;
+                var h = document.documentElement.scrollHeight - window.innerHeight;
+                progress.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+
+                if (y > 40) {
+                    navbar.classList.add('glass', 'shadow-soft');
+                    navInner.classList.add('h-16');
+                    navInner.classList.remove('h-20');
+                } else {
+                    navbar.classList.remove('glass', 'shadow-soft');
+                    navInner.classList.add('h-20');
+                    navInner.classList.remove('h-16');
                 }
-                // Close mobile menu if open
-                document.getElementById('mobile-menu').classList.add('hidden');
+
+                if (y > 600) {
+                    toTop.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+                } else {
+                    toTop.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+                }
+
+                /* Parallax */
+                if (!reduceMotion) {
+                    document.querySelectorAll('[data-parallax]').forEach(function (layer) {
+                        var rect = layer.parentElement.getBoundingClientRect();
+                        var speed = parseFloat(layer.getAttribute('data-parallax'));
+                        var offset = (rect.top) * -speed;
+                        layer.style.transform = 'translate3d(0,' + offset.toFixed(1) + 'px,0)';
+                    });
+                }
+                ticking = false;
+            }
+            window.addEventListener('scroll', function () {
+                if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
+            }, { passive: true });
+            onScroll();
+
+            toTop.addEventListener('click', function () {
+                window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
             });
-        });
+
+            /* ---------- Mobile menu ---------- */
+            var burger = document.getElementById('burgerBtn');
+            var menu = document.getElementById('mobileMenu');
+            var panel = document.getElementById('menuPanel');
+            var overlay = document.getElementById('menuOverlay');
+
+            function openMenu() {
+                menu.classList.remove('invisible', 'opacity-0');
+                panel.classList.remove('translate-x-full');
+                burger.classList.add('open');
+                burger.setAttribute('aria-expanded', 'true');
+                burger.setAttribute('aria-label', 'Fechar menu');
+                menu.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeMenu() {
+                menu.classList.add('opacity-0');
+                panel.classList.add('translate-x-full');
+                burger.classList.remove('open');
+                burger.setAttribute('aria-expanded', 'false');
+                burger.setAttribute('aria-label', 'Abrir menu');
+                menu.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+                setTimeout(function () { menu.classList.add('invisible'); }, 480);
+            }
+            burger.addEventListener('click', function () {
+                burger.classList.contains('open') ? closeMenu() : openMenu();
+            });
+            overlay.addEventListener('click', closeMenu);
+            document.querySelectorAll('.mobile-link').forEach(function (l) {
+                l.addEventListener('click', closeMenu);
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && burger.classList.contains('open')) closeMenu();
+            });
+
+            /* ---------- Smooth scroll for anchors ---------- */
+            document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+                a.addEventListener('click', function (e) {
+                    var id = this.getAttribute('href');
+                    if (id.length < 2) return;
+                    var t = document.querySelector(id);
+                    if (t) {
+                        e.preventDefault();
+                        t.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            /* ---------- Custom cursor ---------- */
+            if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+                var dot = document.getElementById('cursorDot');
+                var ring = document.getElementById('cursorRing');
+                var mx = 0, my = 0, rx = 0, ry = 0;
+                document.addEventListener('mousemove', function (e) {
+                    mx = e.clientX; my = e.clientY;
+                    dot.style.transform = 'translate(' + mx + 'px,' + my + 'px) translate(-50%,-50%)';
+                });
+                (function loop() {
+                    rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
+                    ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px) translate(-50%,-50%)';
+                    requestAnimationFrame(loop);
+                })();
+                document.querySelectorAll('a, button, .card-hover, input, [role="button"]').forEach(function (el) {
+                    el.addEventListener('mouseenter', function () { ring.classList.add('grow'); });
+                    el.addEventListener('mouseleave', function () { ring.classList.remove('grow'); });
+                });
+            } else {
+                var d = document.getElementById('cursorDot'), r = document.getElementById('cursorRing');
+                if (d) d.style.display = 'none';
+                if (r) r.style.display = 'none';
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else { init(); }
+    })();
     </script>
 </body>
 </html>
