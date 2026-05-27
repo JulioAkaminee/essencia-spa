@@ -4,24 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Essência Spa — Bem-Estar e Estética de Luxo em Bragança Paulista</title>
-    <meta name="description" content="Spa de luxo em Bragança Paulista. Massagens relaxantes, tratamentos faciais, drenagem, aromaterapia e rituais de bem-estar em um refúgio de tranquilidade.">
+    <meta name="description" content="Spa de luxo em Bragança Paulista. Massagens relaxantes, tratamentos faciais, drenagem linfática, aromaterapia e rituais de bem-estar em um refúgio de tranquilidade.">
     <meta name="theme-color" content="#FBF7F4">
+    <meta name="color-scheme" content="light">
 
-    <!-- Open Graph -->
+    <!-- Open Graph / Twitter -->
     <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
     <meta property="og:title" content="Essência Spa — Bem-Estar e Estética de Luxo">
     <meta property="og:description" content="Rituais de relaxamento e beleza em um refúgio de tranquilidade no coração de Bragança Paulista.">
     <meta property="og:image" content="https://images.pexels.com/photos/3865676/pexels-photo-3865676.jpeg?auto=compress&cs=tinysrgb&w=1200">
+    <meta name="twitter:card" content="summary_large_image">
 
-    <!-- Performance: preconnect -->
+    <!-- Performance: preconnect / dns-prefetch -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://images.pexels.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <!-- Preload the LCP hero image -->
+    <link rel="preload" as="image" href="https://images.pexels.com/photos/3865676/pexels-photo-3865676.jpeg?auto=compress&cs=tinysrgb&w=1920" fetchpriority="high">
 
     <!-- Fonts: 2 families — Cormorant Garamond (display serif) + Jost (sans) -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -32,7 +39,7 @@
                         /* Warm neutral base — refined "linen / sand" */
                         cream:   '#FBF7F4',
                         sand:    '#F3EBE3',
-                        stone:   { 400:'#9C8F86', 500:'#7C6F66', 600:'#5E534B', 700:'#473E38', 800:'#322B27' },
+                        stone:   { 400:'#9C8F86', 500:'#7C6F66', 600:'#5E534B', 700:'#473E38', 800:'#322B27', 900:'#241F1B' },
                         /* Brand: refined rose */
                         blush:   { 50:'#FDF4F1', 100:'#FAE7E0', 200:'#F3CDBF', 300:'#E9AB97', 400:'#DD8870', 500:'#CC6A52', 600:'#B0503C', 700:'#8E3F30', 800:'#6E3226' },
                         /* Secondary: muted lavender */
@@ -45,6 +52,7 @@
                         body:    ['Jost', 'sans-serif'],
                     },
                     letterSpacing: { tightish: '-0.01em' },
+                    transitionTimingFunction: { 'out-expo': 'cubic-bezier(.16,1,.3,1)' },
                 }
             }
         }
@@ -52,6 +60,9 @@
 
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest" defer></script>
+    <!-- GSAP (optional enhancement; page is fully functional without it) -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
 
     <style type="text/tailwindcss">
         @layer base {
@@ -60,29 +71,32 @@
             h1,h2,h3,h4,h5,h6 { font-family: 'Cormorant Garamond', serif; }
 
             /* Fluid typographic scale */
-            .fluid-display { font-size: clamp(2.75rem, 7vw + 0.5rem, 6.5rem); line-height: 0.98; }
-            .fluid-h2      { font-size: clamp(2rem, 3.5vw + 0.5rem, 3.5rem); line-height: 1.05; }
+            .fluid-display { font-size: clamp(2.75rem, 7vw + 0.5rem, 6.5rem); line-height: 0.98; letter-spacing: -0.015em; }
+            .fluid-h2      { font-size: clamp(2rem, 3.5vw + 0.5rem, 3.5rem); line-height: 1.05; letter-spacing: -0.01em; }
             .fluid-lead    { font-size: clamp(1.05rem, 0.6vw + 0.9rem, 1.35rem); }
 
             /* Visible, on-brand focus states */
             :focus-visible {
                 outline: 2px solid #B0503C;
                 outline-offset: 3px;
-                border-radius: 4px;
+                border-radius: 6px;
             }
             ::selection { background: #E9AB97; color: #322B27; }
+
+            /* Tame the FOUC for fonts */
+            body { text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
         }
 
         @layer components {
             /* ---------- Glassmorphism ---------- */
             .glass {
-                background: rgba(251, 247, 244, 0.65);
-                backdrop-filter: blur(16px) saturate(140%);
-                -webkit-backdrop-filter: blur(16px) saturate(140%);
-                border: 1px solid rgba(255, 255, 255, 0.5);
+                background: rgba(251, 247, 244, 0.62);
+                backdrop-filter: blur(18px) saturate(150%);
+                -webkit-backdrop-filter: blur(18px) saturate(150%);
+                border: 1px solid rgba(255, 255, 255, 0.55);
             }
             .glass-dark {
-                background: rgba(50, 43, 39, 0.35);
+                background: rgba(50, 43, 39, 0.32);
                 backdrop-filter: blur(14px);
                 -webkit-backdrop-filter: blur(14px);
                 border: 1px solid rgba(255, 255, 255, 0.18);
@@ -106,6 +120,23 @@
                 -webkit-background-clip: text;
                 background-clip: text;
                 -webkit-text-fill-color: transparent;
+                color: transparent;
+            }
+
+            /* ---------- Hairline gradient borders (premium card frames) ---------- */
+            .ring-grad {
+                position: relative;
+            }
+            .ring-grad::before {
+                content: '';
+                position: absolute; inset: 0;
+                border-radius: inherit;
+                padding: 1px;
+                background: linear-gradient(140deg, rgba(233,171,151,.55), rgba(139,122,176,.35) 60%, transparent);
+                -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+                -webkit-mask-composite: xor;
+                        mask-composite: exclude;
+                pointer-events: none;
             }
 
             /* ---------- Primary button ---------- */
@@ -115,6 +146,7 @@
                 overflow: hidden;
                 background: linear-gradient(105deg, #CC6A52 0%, #B0503C 60%, #8B7AB0 140%);
                 color: #fff;
+                transition: box-shadow .5s ease, transform .4s var(--ease, cubic-bezier(.16,1,.3,1));
             }
             .btn-primary::after {
                 content: '';
@@ -124,7 +156,7 @@
                 transition: opacity .5s ease;
             }
             .btn-primary:hover::after { opacity: 1; }
-            .btn-primary:hover { box-shadow: 0 12px 30px -8px rgba(176,80,60,0.5); }
+            .btn-primary:hover { box-shadow: 0 14px 34px -8px rgba(176,80,60,0.5); }
 
             /* Shimmer sweep on buttons */
             .sheen { position: relative; overflow: hidden; }
@@ -153,10 +185,26 @@
             .card-hover { transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s ease; }
             .card-hover:hover { transform: translateY(-10px); }
 
-            .img-zoom img { transition: transform 1s cubic-bezier(.2,.7,.2,1); }
+            .img-zoom img { transition: transform 1.1s cubic-bezier(.2,.7,.2,1); }
             .img-zoom:hover img { transform: scale(1.08); }
 
-            /* ---------- Decorative thin divider ---------- */
+            /* ---------- Tilt cards ---------- */
+            .tilt { transform-style: preserve-3d; transition: transform .4s cubic-bezier(.16,1,.3,1); will-change: transform; }
+            .tilt > * { transform: translateZ(28px); }
+
+            /* ---------- Active nav underline ---------- */
+            .nav-link { position: relative; }
+            .nav-link::after {
+                content: ''; position: absolute; left: 0; bottom: -6px;
+                width: 100%; height: 1.5px;
+                background: linear-gradient(90deg, #CC6A52, #8B7AB0);
+                transform: scaleX(0); transform-origin: left;
+                transition: transform .4s cubic-bezier(.16,1,.3,1);
+            }
+            .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+            .nav-link.active { color: #B0503C; }
+
+            /* ---------- Decorative eyebrow ---------- */
             .eyebrow {
                 display: inline-flex; align-items: center; gap: .6rem;
                 font-family: 'Jost', sans-serif;
@@ -171,6 +219,16 @@
                 content: ''; width: 2.25rem; height: 1px;
                 background: currentColor; opacity: .55;
             }
+
+            /* ---------- FAQ accordion ---------- */
+            .faq-item .faq-body {
+                display: grid; grid-template-rows: 0fr;
+                transition: grid-template-rows .5s cubic-bezier(.16,1,.3,1);
+            }
+            .faq-item.open .faq-body { grid-template-rows: 1fr; }
+            .faq-item .faq-body > div { overflow: hidden; }
+            .faq-item .faq-chevron { transition: transform .45s cubic-bezier(.16,1,.3,1); }
+            .faq-item.open .faq-chevron { transform: rotate(180deg); }
         }
 
         @layer utilities {
@@ -197,6 +255,20 @@
 
             @keyframes hint { 0%,100%{transform:translateY(0);opacity:.5} 50%{transform:translateY(8px);opacity:1} }
             .hint { animation: hint 2s ease-in-out infinite; }
+
+            /* ---------- Marquee ---------- */
+            @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+            .marquee-track { animation: marquee 38s linear infinite; }
+            .marquee:hover .marquee-track { animation-play-state: paused; }
+
+            /* ---------- Skeleton shimmer for image loading ---------- */
+            @keyframes shimmer { 0%{background-position:-460px 0} 100%{background-position:460px 0} }
+            .img-skeleton {
+                background: linear-gradient(100deg, #efe7e0 30%, #f7f1ec 50%, #efe7e0 70%);
+                background-size: 920px 100%;
+                animation: shimmer 1.6s linear infinite;
+            }
+            img.loaded { animation: none; background: none; }
 
             /* ---------- Custom cursor ---------- */
             .cursor-dot, .cursor-ring {
@@ -230,6 +302,7 @@
                 transition-duration: .001ms !important;
             }
             .reveal { opacity: 1 !important; transform: none !important; }
+            .marquee-track { animation: none !important; }
             .cursor-dot, .cursor-ring { display: none !important; }
         }
     </style>
@@ -257,16 +330,17 @@
                         </span>
                         <span class="leading-none">
                             <span class="block font-display text-2xl font-semibold text-stone-800">Essência</span>
-                            <span class="block text-[0.62rem] tracking-[0.34em] uppercase text-blush-500 font-medium">Spa & Bem-Estar</span>
+                            <span class="block text-[0.62rem] tracking-[0.34em] uppercase text-blush-500 font-medium">Spa &amp; Bem-Estar</span>
                         </span>
                     </a>
 
                     <div class="hidden md:flex items-center gap-9">
                         <a href="#servicos" class="nav-link text-sm tracking-wide text-stone-600 hover:text-blush-600 transition-colors">Serviços</a>
                         <a href="#espaco" class="nav-link text-sm tracking-wide text-stone-600 hover:text-blush-600 transition-colors">O Espaço</a>
-                        <a href="#rituais" class="nav-link text-sm tracking-wide text-stone-600 hover:text-blush-600 transition-colors">Rituais</a>
+                        <a href="#pacotes" class="nav-link text-sm tracking-wide text-stone-600 hover:text-blush-600 transition-colors">Pacotes</a>
                         <a href="#depoimentos" class="nav-link text-sm tracking-wide text-stone-600 hover:text-blush-600 transition-colors">Depoimentos</a>
-                        <a href="#contato" class="sheen btn-primary text-sm font-medium px-6 py-2.5 rounded-full shadow-lg shadow-blush-500/25 transition-all hover:scale-[1.03]">Agendar</a>
+                        <a href="#faq" class="nav-link text-sm tracking-wide text-stone-600 hover:text-blush-600 transition-colors">Dúvidas</a>
+                        <a href="#contato" class="sheen btn-primary text-sm font-medium px-6 py-2.5 rounded-full shadow-lg shadow-blush-500/25 hover:scale-[1.03]">Agendar</a>
                     </div>
 
                     <button id="burgerBtn" class="burger md:hidden text-stone-700 p-2 -mr-2" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -279,12 +353,13 @@
         <!-- Mobile menu -->
         <div id="mobileMenu" class="fixed inset-0 z-40 md:hidden invisible opacity-0 transition-all duration-500" aria-hidden="true">
             <div class="absolute inset-0 bg-stone-800/40 backdrop-blur-sm" id="menuOverlay"></div>
-            <nav class="absolute right-0 top-0 h-full w-[78%] max-w-sm glass shadow-lift translate-x-full transition-transform duration-500 ease-[cubic-bezier(.65,0,.35,1)] flex flex-col" id="menuPanel" aria-label="Menu móvel">
+            <nav class="absolute right-0 top-0 h-full w-[80%] max-w-sm glass shadow-lift translate-x-full transition-transform duration-500 ease-[cubic-bezier(.65,0,.35,1)] flex flex-col" id="menuPanel" aria-label="Menu móvel">
                 <div class="px-7 pt-24 pb-8 flex flex-col gap-1">
                     <a href="#servicos"    class="mobile-link py-4 border-b border-stone-400/15 font-display text-3xl text-stone-800">Serviços</a>
                     <a href="#espaco"       class="mobile-link py-4 border-b border-stone-400/15 font-display text-3xl text-stone-800">O Espaço</a>
-                    <a href="#rituais"      class="mobile-link py-4 border-b border-stone-400/15 font-display text-3xl text-stone-800">Rituais</a>
+                    <a href="#pacotes"      class="mobile-link py-4 border-b border-stone-400/15 font-display text-3xl text-stone-800">Pacotes</a>
                     <a href="#depoimentos"  class="mobile-link py-4 border-b border-stone-400/15 font-display text-3xl text-stone-800">Depoimentos</a>
+                    <a href="#faq"          class="mobile-link py-4 border-b border-stone-400/15 font-display text-3xl text-stone-800">Dúvidas</a>
                     <a href="#contato" class="mobile-link mt-6 btn-primary text-center font-medium px-6 py-4 rounded-full">Agendar Consulta</a>
                 </div>
                 <div class="mt-auto px-7 pb-10 text-sm text-stone-500 space-y-2">
@@ -306,13 +381,13 @@
                  class="w-full h-[118%] object-cover" fetchpriority="high">
         </div>
         <div class="absolute inset-0 -z-10 bg-gradient-to-b from-cream/70 via-cream/45 to-cream"></div>
-        <div class="absolute inset-0 -z-10 bg-gradient-to-r from-cream/80 via-transparent to-transparent"></div>
+        <div class="absolute inset-0 -z-10 bg-gradient-to-r from-cream/85 via-cream/20 to-transparent"></div>
 
         <!-- Ambient blobs -->
         <div class="hidden md:block absolute top-28 right-24 w-44 h-44 rounded-full bg-blush-200/40 blur-3xl floaty"></div>
         <div class="hidden md:block absolute bottom-28 left-1/4 w-56 h-56 rounded-full bg-lilac-300/30 blur-3xl floaty-2"></div>
 
-        <div class="relative max-w-7xl mx-auto px-5 sm:px-8 w-full pt-28 pb-20">
+        <div class="relative max-w-7xl mx-auto px-5 sm:px-8 w-full pt-28 pb-24">
             <div class="max-w-3xl">
                 <p class="eyebrow text-blush-600 reveal">Bem-estar em Bragança Paulista</p>
                 <h1 class="fluid-display font-display font-medium text-stone-800 mt-6 mb-7 reveal" data-delay="80">
@@ -323,8 +398,8 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4 mt-10 reveal" data-delay="240">
-                    <a href="https://wa.me/5511999999999" target="_blank" rel="noopener"
-                       class="sheen btn-primary inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full font-medium text-lg shadow-xl shadow-blush-500/25 transition-transform hover:scale-[1.03]">
+                    <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" data-magnetic
+                       class="sheen btn-primary inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full font-medium text-lg shadow-xl shadow-blush-500/25 hover:scale-[1.03]">
                         <i data-lucide="calendar-heart" class="w-5 h-5"></i> Agendar Consulta
                     </a>
                     <a href="#servicos"
@@ -341,7 +416,7 @@
                         <img src="https://images.pexels.com/photos/6628309/pexels-photo-6628309.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop&crop=face" alt="" loading="lazy" class="w-11 h-11 rounded-full border-2 border-cream object-cover">
                     </div>
                     <div>
-                        <div class="flex items-center gap-0.5 text-gold-500" aria-hidden="true">
+                        <div class="flex items-center gap-0.5 text-gold-500" aria-label="Avaliação 5 de 5 estrelas">
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
@@ -360,6 +435,28 @@
         </a>
     </section>
 
+    <!-- ===================== MARQUEE ===================== -->
+    <div class="marquee relative bg-stone-800 text-cream/80 py-4 overflow-hidden select-none" aria-hidden="true">
+        <div class="marquee-track flex w-max gap-10 whitespace-nowrap will-change-transform">
+            <span class="flex items-center gap-10 text-sm tracking-[0.25em] uppercase font-light">
+                <span class="flex items-center gap-3"><i data-lucide="flower" class="w-4 h-4 text-blush-300"></i> Aromaterapia</span>
+                <span class="flex items-center gap-3"><i data-lucide="sparkles" class="w-4 h-4 text-lilac-300"></i> Estética Facial</span>
+                <span class="flex items-center gap-3"><i data-lucide="droplets" class="w-4 h-4 text-blush-300"></i> Drenagem Linfática</span>
+                <span class="flex items-center gap-3"><i data-lucide="hand-heart" class="w-4 h-4 text-gold-300"></i> Massagens</span>
+                <span class="flex items-center gap-3"><i data-lucide="flame" class="w-4 h-4 text-blush-300"></i> Pedras Quentes</span>
+                <span class="flex items-center gap-3"><i data-lucide="leaf" class="w-4 h-4 text-lilac-300"></i> Produtos Naturais</span>
+            </span>
+            <span class="flex items-center gap-10 text-sm tracking-[0.25em] uppercase font-light">
+                <span class="flex items-center gap-3"><i data-lucide="flower" class="w-4 h-4 text-blush-300"></i> Aromaterapia</span>
+                <span class="flex items-center gap-3"><i data-lucide="sparkles" class="w-4 h-4 text-lilac-300"></i> Estética Facial</span>
+                <span class="flex items-center gap-3"><i data-lucide="droplets" class="w-4 h-4 text-blush-300"></i> Drenagem Linfática</span>
+                <span class="flex items-center gap-3"><i data-lucide="hand-heart" class="w-4 h-4 text-gold-300"></i> Massagens</span>
+                <span class="flex items-center gap-3"><i data-lucide="flame" class="w-4 h-4 text-blush-300"></i> Pedras Quentes</span>
+                <span class="flex items-center gap-3"><i data-lucide="leaf" class="w-4 h-4 text-lilac-300"></i> Produtos Naturais</span>
+            </span>
+        </div>
+    </div>
+
     <!-- ===================== DESTAQUES ===================== -->
     <section id="destaques" class="relative py-24 sm:py-32 bg-white overflow-hidden">
         <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-blush-100/60 blur-3xl drift"></div>
@@ -370,21 +467,21 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
-                <article class="group p-8 rounded-[1.75rem] bg-cream/70 border border-stone-400/10 card-hover shadow-soft hover:shadow-lift reveal" data-delay="0">
+                <article class="group p-8 rounded-[1.75rem] bg-cream/70 ring-grad card-hover shadow-soft hover:shadow-lift reveal" data-delay="0">
                     <span class="inline-grid place-items-center w-14 h-14 rounded-2xl bg-gradient-to-br from-blush-300 to-blush-500 text-white shadow-lg shadow-blush-400/25 transition-transform duration-500 group-hover:-translate-y-1">
                         <i data-lucide="heart-handshake" class="w-7 h-7"></i>
                     </span>
                     <h3 class="font-display text-2xl text-stone-800 mt-6 mb-3">Terapias Holísticas</h3>
                     <p class="text-stone-500 leading-relaxed">Técnicas orientais e ocidentais combinadas para equilibrar corpo, mente e energia em uma única sessão.</p>
                 </article>
-                <article class="group p-8 rounded-[1.75rem] bg-cream/70 border border-stone-400/10 card-hover shadow-soft hover:shadow-lift reveal" data-delay="120">
+                <article class="group p-8 rounded-[1.75rem] bg-cream/70 ring-grad card-hover shadow-soft hover:shadow-lift reveal" data-delay="120">
                     <span class="inline-grid place-items-center w-14 h-14 rounded-2xl bg-gradient-to-br from-lilac-400 to-lilac-600 text-white shadow-lg shadow-lilac-500/25 transition-transform duration-500 group-hover:-translate-y-1">
                         <i data-lucide="leaf" class="w-7 h-7"></i>
                     </span>
                     <h3 class="font-display text-2xl text-stone-800 mt-6 mb-3">Produtos Naturais</h3>
                     <p class="text-stone-500 leading-relaxed">Óleos essenciais puros e cosméticos orgânicos, livres de parabenos e sulfatos — respeito à sua pele e ao planeta.</p>
                 </article>
-                <article class="group p-8 rounded-[1.75rem] bg-cream/70 border border-stone-400/10 card-hover shadow-soft hover:shadow-lift reveal" data-delay="240">
+                <article class="group p-8 rounded-[1.75rem] bg-cream/70 ring-grad card-hover shadow-soft hover:shadow-lift reveal" data-delay="240">
                     <span class="inline-grid place-items-center w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-500 text-white shadow-lg shadow-gold-400/30 transition-transform duration-500 group-hover:-translate-y-1">
                         <i data-lucide="award" class="w-7 h-7"></i>
                     </span>
@@ -426,10 +523,9 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7" id="servicesGrid">
-                <!-- Card template -->
                 <article class="img-zoom group bg-white rounded-[1.75rem] overflow-hidden shadow-soft hover:shadow-lift card-hover reveal" data-delay="0">
-                    <div class="relative h-60 overflow-hidden">
-                        <img src="https://images.pexels.com/photos/3997989/pexels-photo-3997989.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Massagem relaxante com óleos" loading="lazy" class="w-full h-full object-cover">
+                    <div class="relative h-60 overflow-hidden img-skeleton">
+                        <img src="https://images.pexels.com/photos/3997989/pexels-photo-3997989.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Massagem relaxante com óleos essenciais" loading="lazy" class="w-full h-full object-cover">
                         <span class="absolute top-4 right-4 glass text-stone-700 text-xs font-semibold px-3 py-1.5 rounded-full">60 min</span>
                     </div>
                     <div class="p-7">
@@ -443,7 +539,7 @@
                 </article>
 
                 <article class="img-zoom group bg-white rounded-[1.75rem] overflow-hidden shadow-soft hover:shadow-lift card-hover reveal" data-delay="120">
-                    <div class="relative h-60 overflow-hidden">
+                    <div class="relative h-60 overflow-hidden img-skeleton">
                         <img src="https://images.pexels.com/photos/3985360/pexels-photo-3985360.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Tratamento facial de limpeza de pele" loading="lazy" class="w-full h-full object-cover">
                         <span class="absolute top-4 right-4 glass text-stone-700 text-xs font-semibold px-3 py-1.5 rounded-full">90 min</span>
                     </div>
@@ -458,7 +554,7 @@
                 </article>
 
                 <article class="img-zoom group bg-white rounded-[1.75rem] overflow-hidden shadow-soft hover:shadow-lift card-hover reveal" data-delay="240">
-                    <div class="relative h-60 overflow-hidden">
+                    <div class="relative h-60 overflow-hidden img-skeleton">
                         <img src="https://images.pexels.com/photos/3764119/pexels-photo-3764119.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sessão de drenagem linfática" loading="lazy" class="w-full h-full object-cover">
                         <span class="absolute top-4 right-4 glass text-stone-700 text-xs font-semibold px-3 py-1.5 rounded-full">75 min</span>
                     </div>
@@ -473,7 +569,7 @@
                 </article>
 
                 <article class="img-zoom group bg-white rounded-[1.75rem] overflow-hidden shadow-soft hover:shadow-lift card-hover reveal" data-delay="0">
-                    <div class="relative h-60 overflow-hidden">
+                    <div class="relative h-60 overflow-hidden img-skeleton">
                         <img src="https://images.pexels.com/photos/3997379/pexels-photo-3997379.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Spa dos pés e reflexologia" loading="lazy" class="w-full h-full object-cover">
                         <span class="absolute top-4 right-4 glass text-stone-700 text-xs font-semibold px-3 py-1.5 rounded-full">45 min</span>
                     </div>
@@ -488,7 +584,7 @@
                 </article>
 
                 <article class="img-zoom group bg-white rounded-[1.75rem] overflow-hidden shadow-soft hover:shadow-lift card-hover reveal" data-delay="120">
-                    <div class="relative h-60 overflow-hidden">
+                    <div class="relative h-60 overflow-hidden img-skeleton">
                         <img src="https://images.pexels.com/photos/3997991/pexels-photo-3997991.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Peeling facial avançado" loading="lazy" class="w-full h-full object-cover">
                         <span class="absolute top-4 right-4 glass text-stone-700 text-xs font-semibold px-3 py-1.5 rounded-full">60 min</span>
                     </div>
@@ -503,13 +599,13 @@
                 </article>
 
                 <article class="img-zoom group bg-white rounded-[1.75rem] overflow-hidden shadow-soft hover:shadow-lift card-hover reveal" data-delay="240">
-                    <div class="relative h-60 overflow-hidden">
+                    <div class="relative h-60 overflow-hidden img-skeleton">
                         <img src="https://images.pexels.com/photos/6187662/pexels-photo-6187662.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Banho de imersão com aromaterapia" loading="lazy" class="w-full h-full object-cover">
                         <span class="absolute top-4 right-4 glass text-stone-700 text-xs font-semibold px-3 py-1.5 rounded-full">120 min</span>
                     </div>
                     <div class="p-7">
                         <div class="flex justify-between items-baseline gap-3 mb-2">
-                            <h3 class="font-display text-2xl text-stone-800">Ofurô & Aromaterapia</h3>
+                            <h3 class="font-display text-2xl text-stone-800">Ofurô &amp; Aromaterapia</h3>
                             <span class="font-display text-2xl text-blush-600">R$200</span>
                         </div>
                         <p class="text-stone-500 text-sm leading-relaxed mb-5">Imersão em águas termais com óleos essenciais seguida de massagem relaxante.</p>
@@ -555,16 +651,16 @@
                 </div>
 
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="img-zoom rounded-3xl overflow-hidden h-60 shadow-soft reveal zoom" data-delay="0">
+                    <div class="img-zoom rounded-3xl overflow-hidden h-60 shadow-soft reveal zoom img-skeleton" data-delay="0">
                         <img src="https://images.pexels.com/photos/3865792/pexels-photo-3865792.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Sala de massagem aconchegante" loading="lazy" class="w-full h-full object-cover">
                     </div>
-                    <div class="img-zoom rounded-3xl overflow-hidden h-60 mt-8 shadow-soft reveal zoom" data-delay="120">
+                    <div class="img-zoom rounded-3xl overflow-hidden h-60 mt-8 shadow-soft reveal zoom img-skeleton" data-delay="120">
                         <img src="https://images.pexels.com/photos/6663571/pexels-photo-6663571.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Detalhes de decoração com velas e flores" loading="lazy" class="w-full h-full object-cover">
                     </div>
-                    <div class="img-zoom rounded-3xl overflow-hidden h-60 -mt-8 shadow-soft reveal zoom" data-delay="180">
+                    <div class="img-zoom rounded-3xl overflow-hidden h-60 -mt-8 shadow-soft reveal zoom img-skeleton" data-delay="180">
                         <img src="https://images.pexels.com/photos/3997381/pexels-photo-3997381.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Produtos naturais de tratamento" loading="lazy" class="w-full h-full object-cover">
                     </div>
-                    <div class="img-zoom rounded-3xl overflow-hidden h-60 shadow-soft reveal zoom" data-delay="300">
+                    <div class="img-zoom rounded-3xl overflow-hidden h-60 shadow-soft reveal zoom img-skeleton" data-delay="300">
                         <img src="https://images.pexels.com/photos/6187652/pexels-photo-6187652.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Área de relaxamento do spa" loading="lazy" class="w-full h-full object-cover">
                     </div>
                 </div>
@@ -572,20 +668,77 @@
         </div>
     </section>
 
-    <!-- ===================== RITUAIS (parallax band) ===================== -->
-    <section id="rituais" class="relative py-28 sm:py-36 overflow-hidden">
+    <!-- ===================== PACOTES / RITUAIS (pricing) ===================== -->
+    <section id="pacotes" class="relative py-24 sm:py-32 bg-gradient-to-b from-cream to-sand overflow-hidden">
+        <div class="absolute -top-20 right-1/4 w-80 h-80 rounded-full bg-lilac-200/40 blur-3xl drift"></div>
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 relative">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <p class="eyebrow center justify-center text-blush-500 reveal">Rituais Exclusivos</p>
+                <h2 class="fluid-h2 font-display text-stone-800 mt-5 reveal" data-delay="80">Jornadas completas de bem-estar</h2>
+                <p class="text-stone-500 mt-4 reveal" data-delay="140">Combinações pensadas para presentear o corpo e silenciar a mente.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-7 items-stretch">
+                <!-- Plan 1 -->
+                <article class="flex flex-col bg-white rounded-[1.75rem] p-8 shadow-soft hover:shadow-lift card-hover reveal" data-delay="0">
+                    <h3 class="font-display text-2xl text-stone-800">Essencial</h3>
+                    <p class="text-stone-500 text-sm mt-2 mb-6">Uma pausa breve para reencontrar o equilíbrio.</p>
+                    <p class="font-display text-5xl text-stone-800">R$240<span class="text-base font-body text-stone-400 font-light"> / sessão</span></p>
+                    <ul class="mt-7 space-y-3 text-sm text-stone-600 flex-1">
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-blush-500"></i> Massagem relaxante 60 min</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-blush-500"></i> Aromaterapia personalizada</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-blush-500"></i> Chá de ervas de boas-vindas</li>
+                    </ul>
+                    <a href="#contato" class="mt-8 glass text-center font-medium px-6 py-3.5 rounded-full text-stone-700 hover:text-blush-600 transition-all hover:scale-[1.02]">Escolher</a>
+                </article>
+
+                <!-- Plan 2 — featured -->
+                <article class="relative flex flex-col rounded-[1.75rem] p-8 text-white shadow-lift card-hover reveal lg:-mt-4" data-delay="120">
+                    <div class="absolute inset-0 -z-10 rounded-[1.75rem] bg-gradient-to-br from-blush-500 via-blush-600 to-lilac-600"></div>
+                    <span class="self-start text-[0.65rem] tracking-[0.22em] uppercase bg-white/20 backdrop-blur px-3 py-1 rounded-full mb-4">Mais escolhido</span>
+                    <h3 class="font-display text-2xl">Renovação</h3>
+                    <p class="text-white/80 text-sm mt-2 mb-6">A jornada completa de corpo e rosto.</p>
+                    <p class="font-display text-5xl">R$420<span class="text-base font-body text-white/70 font-light"> / sessão</span></p>
+                    <ul class="mt-7 space-y-3 text-sm text-white/95 flex-1">
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4"></i> Massagem com pedras quentes 75 min</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4"></i> Limpeza facial profunda</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4"></i> Drenagem linfática</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4"></i> Ofurô &amp; ritual de chá</li>
+                    </ul>
+                    <a href="#contato" class="sheen mt-8 bg-white text-blush-600 text-center font-medium px-6 py-3.5 rounded-full transition-transform hover:scale-[1.03]">Escolher</a>
+                </article>
+
+                <!-- Plan 3 -->
+                <article class="flex flex-col bg-white rounded-[1.75rem] p-8 shadow-soft hover:shadow-lift card-hover reveal" data-delay="240">
+                    <h3 class="font-display text-2xl text-stone-800">Dia Essência</h3>
+                    <p class="text-stone-500 text-sm mt-2 mb-6">Um dia inteiro dedicado só a você.</p>
+                    <p class="font-display text-5xl text-stone-800">R$680<span class="text-base font-body text-stone-400 font-light"> / dia</span></p>
+                    <ul class="mt-7 space-y-3 text-sm text-stone-600 flex-1">
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-blush-500"></i> Todos os rituais da Renovação</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-blush-500"></i> Spa dos pés &amp; reflexologia</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-blush-500"></i> Almoço leve &amp; suco detox</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-blush-500"></i> Acesso ao jardim zen</li>
+                    </ul>
+                    <a href="#contato" class="mt-8 glass text-center font-medium px-6 py-3.5 rounded-full text-stone-700 hover:text-blush-600 transition-all hover:scale-[1.02]">Escolher</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== PARALLAX BAND ===================== -->
+    <section class="relative py-28 sm:py-36 overflow-hidden">
         <div class="absolute inset-0 -z-10" data-parallax="0.12">
             <img src="https://images.pexels.com/photos/3188/love-romantic-bath-candlelight.jpg?auto=compress&cs=tinysrgb&w=1920" alt="" loading="lazy" class="w-full h-[124%] object-cover">
         </div>
         <div class="absolute inset-0 -z-10 bg-stone-800/55"></div>
         <div class="max-w-3xl mx-auto px-5 sm:px-8 text-center text-white">
-            <p class="eyebrow center justify-center text-gold-300 reveal">Rituais Exclusivos</p>
+            <p class="eyebrow center justify-center text-gold-300 reveal">Presenteie quem você ama</p>
             <h2 class="fluid-h2 font-display mt-5 mb-6 reveal" data-delay="80">Uma pausa que você merece</h2>
             <p class="fluid-lead font-light text-white/85 leading-relaxed reveal" data-delay="160">
-                Combine tratamentos em jornadas completas de bem-estar — desenhadas para presentear o corpo e silenciar a mente.
+                Vale-presente, rituais a dois e jornadas personalizadas — o cuidado da Essência também é um gesto de carinho.
             </p>
             <div class="flex flex-wrap justify-center gap-4 mt-10 reveal" data-delay="240">
-                <a href="#contato" class="sheen btn-primary inline-flex items-center gap-2.5 px-8 py-4 rounded-full font-medium text-lg shadow-xl shadow-black/20 transition-transform hover:scale-[1.03]">
+                <a href="#contato" data-magnetic class="sheen btn-primary inline-flex items-center gap-2.5 px-8 py-4 rounded-full font-medium text-lg shadow-xl shadow-black/20 hover:scale-[1.03]">
                     <i data-lucide="gift" class="w-5 h-5"></i> Montar meu ritual
                 </a>
                 <a href="#servicos" class="glass-dark text-white inline-flex items-center gap-2.5 px-8 py-4 rounded-full font-medium text-lg transition-transform hover:scale-[1.02]">
@@ -641,6 +794,56 @@
         </div>
     </section>
 
+    <!-- ===================== FAQ ===================== -->
+    <section id="faq" class="relative py-24 sm:py-32 bg-white overflow-hidden">
+        <div class="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-blush-100/50 blur-3xl drift"></div>
+        <div class="max-w-3xl mx-auto px-5 sm:px-8 relative">
+            <div class="text-center mb-14">
+                <p class="eyebrow center justify-center text-lilac-500 reveal">Dúvidas Frequentes</p>
+                <h2 class="fluid-h2 font-display text-stone-800 mt-5 reveal" data-delay="80">Antes de você chegar</h2>
+            </div>
+
+            <div class="space-y-4" id="faqList">
+                <div class="faq-item bg-cream/60 rounded-2xl ring-grad overflow-hidden reveal" data-delay="0">
+                    <h3>
+                        <button type="button" class="faq-trigger w-full flex items-center justify-between gap-4 text-left px-6 py-5" aria-expanded="false">
+                            <span class="font-display text-xl text-stone-800">Preciso agendar com antecedência?</span>
+                            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-blush-500 shrink-0"></i>
+                        </button>
+                    </h3>
+                    <div class="faq-body"><div><p class="px-6 pb-5 text-stone-500 leading-relaxed">Recomendamos agendar com pelo menos 48 horas de antecedência para garantir o horário ideal, especialmente para rituais mais longos e atendimentos a dois.</p></div></div>
+                </div>
+                <div class="faq-item bg-cream/60 rounded-2xl ring-grad overflow-hidden reveal" data-delay="80">
+                    <h3>
+                        <button type="button" class="faq-trigger w-full flex items-center justify-between gap-4 text-left px-6 py-5" aria-expanded="false">
+                            <span class="font-display text-xl text-stone-800">Os produtos são adequados para pele sensível?</span>
+                            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-blush-500 shrink-0"></i>
+                        </button>
+                    </h3>
+                    <div class="faq-body"><div><p class="px-6 pb-5 text-stone-500 leading-relaxed">Sim. Trabalhamos com cosméticos orgânicos, hipoalergênicos e livres de parabenos. Antes de cada ritual, fazemos uma breve avaliação para personalizar produtos e técnicas ao seu tipo de pele.</p></div></div>
+                </div>
+                <div class="faq-item bg-cream/60 rounded-2xl ring-grad overflow-hidden reveal" data-delay="160">
+                    <h3>
+                        <button type="button" class="faq-trigger w-full flex items-center justify-between gap-4 text-left px-6 py-5" aria-expanded="false">
+                            <span class="font-display text-xl text-stone-800">Vocês oferecem vale-presente?</span>
+                            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-blush-500 shrink-0"></i>
+                        </button>
+                    </h3>
+                    <div class="faq-body"><div><p class="px-6 pb-5 text-stone-500 leading-relaxed">Oferecemos vale-presente para qualquer ritual ou pacote, com validade de 6 meses. É só falar com a nossa equipe pelo WhatsApp que cuidamos de tudo, inclusive da embalagem.</p></div></div>
+                </div>
+                <div class="faq-item bg-cream/60 rounded-2xl ring-grad overflow-hidden reveal" data-delay="240">
+                    <h3>
+                        <button type="button" class="faq-trigger w-full flex items-center justify-between gap-4 text-left px-6 py-5" aria-expanded="false">
+                            <span class="font-display text-xl text-stone-800">Qual a política de cancelamento?</span>
+                            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-blush-500 shrink-0"></i>
+                        </button>
+                    </h3>
+                    <div class="faq-body"><div><p class="px-6 pb-5 text-stone-500 leading-relaxed">Cancelamentos com até 24 horas de antecedência são gratuitos. Após esse prazo, aplicamos uma pequena taxa para reservar o horário e o profissional dedicados a você.</p></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ===================== CTA / CONTATO ===================== -->
     <section id="contato" class="relative py-24 sm:py-32 overflow-hidden">
         <div class="absolute inset-0 -z-10 bg-gradient-to-br from-blush-500 via-blush-600 to-lilac-600"></div>
@@ -655,7 +858,7 @@
                 Agende sua visita e deixe que cuidemos de você. Sua pele, seu corpo e sua mente agradecem.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10 reveal" data-delay="220">
-                <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" class="sheen bg-white text-blush-600 inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full font-medium text-lg shadow-xl transition-transform hover:scale-[1.03]">
+                <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" data-magnetic class="sheen bg-white text-blush-600 inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full font-medium text-lg shadow-xl transition-transform hover:scale-[1.03]">
                     <i data-lucide="message-circle" class="w-5 h-5"></i> Agendar pelo WhatsApp
                 </a>
                 <a href="tel:+5511999999999" class="glass-dark text-white inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full font-medium text-lg transition-transform hover:scale-[1.02]">
@@ -687,17 +890,18 @@
                     <ul class="space-y-2.5 text-sm">
                         <li><a href="#servicos" class="hover:text-blush-300 transition-colors">Serviços</a></li>
                         <li><a href="#espaco" class="hover:text-blush-300 transition-colors">O Espaço</a></li>
-                        <li><a href="#rituais" class="hover:text-blush-300 transition-colors">Rituais</a></li>
+                        <li><a href="#pacotes" class="hover:text-blush-300 transition-colors">Pacotes</a></li>
                         <li><a href="#depoimentos" class="hover:text-blush-300 transition-colors">Depoimentos</a></li>
+                        <li><a href="#faq" class="hover:text-blush-300 transition-colors">Dúvidas</a></li>
                     </ul>
                 </nav>
-                <nav aria-label="Serviços">
+                <nav aria-label="Tratamentos">
                     <h3 class="text-white font-medium mb-4 tracking-wide">Tratamentos</h3>
                     <ul class="space-y-2.5 text-sm">
                         <li><a href="#servicos" class="hover:text-blush-300 transition-colors">Massagem Relaxante</a></li>
                         <li><a href="#servicos" class="hover:text-blush-300 transition-colors">Limpeza de Pele</a></li>
                         <li><a href="#servicos" class="hover:text-blush-300 transition-colors">Drenagem Linfática</a></li>
-                        <li><a href="#servicos" class="hover:text-blush-300 transition-colors">Pacotes Especiais</a></li>
+                        <li><a href="#pacotes" class="hover:text-blush-300 transition-colors">Pacotes Especiais</a></li>
                     </ul>
                 </nav>
                 <div>
@@ -727,6 +931,22 @@
 
         function init() {
             if (window.lucide) lucide.createIcons();
+
+            /* ---------- Image loading skeleton fade ---------- */
+            document.querySelectorAll('img').forEach(function (img) {
+                if (img.complete && img.naturalWidth) {
+                    img.classList.add('loaded');
+                    if (img.parentElement) img.parentElement.classList.remove('img-skeleton');
+                } else {
+                    img.addEventListener('load', function () {
+                        img.classList.add('loaded');
+                        if (img.parentElement) img.parentElement.classList.remove('img-skeleton');
+                    });
+                    img.addEventListener('error', function () {
+                        if (img.parentElement) img.parentElement.classList.remove('img-skeleton');
+                    });
+                }
+            });
 
             /* ---------- Scroll reveal (IntersectionObserver + stagger) ---------- */
             var reveals = document.querySelectorAll('.reveal');
@@ -769,11 +989,30 @@
                 counters.forEach(function (el) { el.textContent = el.getAttribute('data-count') + (el.getAttribute('data-suffix') || ''); });
             }
 
-            /* ---------- Navbar scroll state + progress + back to top ---------- */
+            /* ---------- Scrollspy (active nav link) ---------- */
+            var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
+            var sections = navLinks
+                .map(function (l) { return document.querySelector(l.getAttribute('href')); })
+                .filter(Boolean);
+            if ('IntersectionObserver' in window && sections.length) {
+                var so = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (e) {
+                        if (!e.isIntersecting) return;
+                        navLinks.forEach(function (l) {
+                            l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id);
+                        });
+                    });
+                }, { rootMargin: '-45% 0px -50% 0px' });
+                sections.forEach(function (s) { so.observe(s); });
+            }
+
+            /* ---------- Navbar scroll state + progress + back to top + parallax ---------- */
             var navbar = document.getElementById('navbar');
             var navInner = document.getElementById('navInner');
             var progress = document.getElementById('progress');
             var toTop = document.getElementById('toTop');
+            var parallaxLayers = document.querySelectorAll('[data-parallax]');
+            var hasGsap = false; // set true if GSAP ScrollTrigger handles parallax
             var ticking = false;
 
             function onScroll() {
@@ -797,12 +1036,12 @@
                     toTop.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
                 }
 
-                /* Parallax */
-                if (!reduceMotion) {
-                    document.querySelectorAll('[data-parallax]').forEach(function (layer) {
+                /* Parallax fallback (only if GSAP not driving it) */
+                if (!reduceMotion && !hasGsap) {
+                    parallaxLayers.forEach(function (layer) {
                         var rect = layer.parentElement.getBoundingClientRect();
                         var speed = parseFloat(layer.getAttribute('data-parallax'));
-                        var offset = (rect.top) * -speed;
+                        var offset = rect.top * -speed;
                         layer.style.transform = 'translate3d(0,' + offset.toFixed(1) + 'px,0)';
                     });
                 }
@@ -816,6 +1055,25 @@
             toTop.addEventListener('click', function () {
                 window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
             });
+
+            /* ---------- GSAP enhancement (optional) ---------- */
+            if (window.gsap && window.ScrollTrigger && !reduceMotion) {
+                gsap.registerPlugin(ScrollTrigger);
+                hasGsap = true;
+                parallaxLayers.forEach(function (layer) {
+                    var speed = parseFloat(layer.getAttribute('data-parallax'));
+                    gsap.to(layer, {
+                        yPercent: speed * 100,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: layer.parentElement,
+                            start: 'top bottom',
+                            end: 'bottom top',
+                            scrub: true
+                        }
+                    });
+                });
+            }
 
             /* ---------- Mobile menu ---------- */
             var burger = document.getElementById('burgerBtn');
@@ -866,8 +1124,43 @@
                 });
             });
 
+            /* ---------- FAQ accordion (accessible) ---------- */
+            document.querySelectorAll('.faq-item').forEach(function (item) {
+                var trigger = item.querySelector('.faq-trigger');
+                trigger.addEventListener('click', function () {
+                    var isOpen = item.classList.toggle('open');
+                    trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                });
+            });
+
+            /* ---------- Micro-interactions: magnetic buttons + tilt cards ---------- */
+            var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+            if (fine && !reduceMotion) {
+                document.querySelectorAll('[data-magnetic]').forEach(function (el) {
+                    var strength = 0.3;
+                    el.addEventListener('mousemove', function (e) {
+                        var r = el.getBoundingClientRect();
+                        var x = (e.clientX - r.left - r.width / 2) * strength;
+                        var y = (e.clientY - r.top - r.height / 2) * strength;
+                        el.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px)';
+                    });
+                    el.addEventListener('mouseleave', function () { el.style.transform = ''; });
+                });
+
+                document.querySelectorAll('[data-tilt]').forEach(function (el) {
+                    el.classList.add('tilt');
+                    el.addEventListener('mousemove', function (e) {
+                        var r = el.getBoundingClientRect();
+                        var rx = ((e.clientY - r.top) / r.height - 0.5) * -10;
+                        var ry = ((e.clientX - r.left) / r.width - 0.5) * 10;
+                        el.style.transform = 'perspective(900px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)';
+                    });
+                    el.addEventListener('mouseleave', function () { el.style.transform = ''; });
+                });
+            }
+
             /* ---------- Custom cursor ---------- */
-            if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+            if (!reduceMotion && fine) {
                 var dot = document.getElementById('cursorDot');
                 var ring = document.getElementById('cursorRing');
                 var mx = 0, my = 0, rx = 0, ry = 0;
@@ -894,6 +1187,11 @@
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', init);
         } else { init(); }
+
+        /* Re-run once deferred libs (lucide/GSAP) are ready, in case they load after init */
+        window.addEventListener('load', function () {
+            if (window.lucide) lucide.createIcons();
+        });
     })();
     </script>
 </body>
